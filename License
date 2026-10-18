@@ -1,0 +1,486 @@
+KRYPTOS TĒS MOIRAS PROPRIETARY LICENSE
+Version 1.0
+
+Copyright (c) 2026 Kryptos Tēs Moiras and its respective rights holders.
+All rights reserved.
+
+1. DEFINITIONS
+
+"Platform" means the Kryptos Tēs Moiras software, services, server
+infrastructure, repositories, storage systems, Copilot systems,
+artificial intelligence components, documentation, binaries, and
+associated materials, to the extent owned or controlled by the
+respective rights holders.
+
+"Licensor" means the person or legal entity holding the applicable
+rights to the relevant component of the Platform.
+
+"User" means any individual or entity accessing, downloading,
+installing, executing, or using the Platform.
+
+"Private Repository" means a repository designated as private and
+accessible only to its owner and explicitly authorized collaborators.
+
+"Confidential Information" means non-public source code, cryptographic
+keys, authentication credentials, recovery tokens, internal
+architectural details, security mechanisms, vulnerability information,
+private repository contents, and other information designated as
+confidential or reasonably understood to be confidential.
+
+"Copilot" means the account-specific code analysis and assistance
+system associated with a User.
+
+"Central AI" means the artificial intelligence system responsible for
+assisting with internal Platform processes, analyzing technical
+artifacts, assessing reported problems, and proposing solutions.
+
+"Published Component" means a component whose source code or binary
+has been explicitly made publicly available by its rights holder.
+
+"Authorized Action" means an operation expressly permitted by the
+applicable service rules, the User's permissions, and applicable law.
+
+
+2. OWNERSHIP AND RESERVATION OF RIGHTS
+
+All rights, title, and interest in the Platform and its proprietary
+components remain with their respective rights holders.
+
+Except for the limited permissions expressly granted by this License,
+no license or other right is granted, whether by implication,
+estoppel, exhaustion, or otherwise, to the extent such rights may
+lawfully be reserved.
+
+Public availability of source code, documentation, binaries, or other
+materials does not, by itself, authorize their reproduction,
+modification, redistribution, sublicensing, or commercial exploitation.
+
+Third-party components remain subject to their respective licenses.
+Nothing in this License overrides the terms of applicable third-party
+licenses or removes rights granted under them.
+
+
+3. FREE-OF-CHARGE USE
+
+Use of the Platform is provided free of charge.
+
+No direct payment is required solely for ordinary access to or use
+of the Platform, subject to the applicable eligibility, security,
+and service requirements.
+
+The project may accept voluntary donations to support development,
+maintenance, infrastructure, and security.
+
+Donations do not purchase ownership, privileged access, additional
+rights to proprietary source code, or exemptions from this License.
+
+Commercial distribution, licensing, or exploitation of proprietary
+binaries may require separate written authorization and may be subject
+to separate commercial terms.
+
+No commercial restriction in this section overrides rights that
+cannot lawfully be restricted.
+
+
+4. LIMITED LICENSE TO USERS
+
+Subject to this License and the applicable service terms, the Licensor
+grants the User a limited, non-exclusive, non-transferable, revocable
+permission to access and use the Platform for its intended purposes.
+
+This permission does not grant the right to:
+
+a. redistribute proprietary components without authorization;
+b. sublicense proprietary components;
+c. sell, rent, lease, or commercially distribute proprietary binaries
+   without the required authorization;
+d. remove or alter applicable ownership notices;
+e. bypass access controls or security restrictions;
+f. access repositories, accounts, storage areas, or resources without
+   authorization;
+g. use the Platform to compromise another User's confidentiality,
+   integrity, or availability.
+
+Any permission not expressly granted remains reserved to the
+applicable rights holder, subject to mandatory applicable law.
+
+
+5. REVERSE ENGINEERING AND CIRCUMVENTION
+
+To the extent permitted by applicable law, the User shall not
+reverse engineer, decompile, disassemble, circumvent, or otherwise
+attempt to reconstruct proprietary implementation details of the
+Platform for the purpose of:
+
+a. bypassing security controls;
+b. extracting cryptographic keys, credentials, or protected secrets;
+c. defeating repository isolation or access controls;
+d. reproducing proprietary components without authorization;
+e. creating an unauthorized competing implementation through the
+   misuse of protected Confidential Information;
+f. compromising the Platform or its Users.
+
+This section does not prohibit acts that applicable law expressly
+permits, including legally protected interoperability activities,
+lawful security research, or other non-waivable statutory exceptions.
+
+Nothing in this License creates an automatic criminal offense.
+
+Where there is a reasonable basis to suspect unlawful conduct, the
+Licensor may preserve relevant evidence and refer the matter to the
+competent authorities or courts, as appropriate under applicable law.
+
+
+6. PROTECTION OF CONFIDENTIAL INFORMATION
+
+Users shall not knowingly obtain, use, disclose, publish, transfer,
+or exploit Confidential Information without authorization.
+
+This prohibition includes, without limitation:
+
+a. cryptographic keys and recovery credentials;
+b. private repository contents belonging to other Users;
+c. non-public server configurations and security mechanisms;
+d. internal credentials and authentication material;
+e. non-public vulnerability details that expose Users or the Platform
+   to unauthorized access or material harm;
+f. confidential technical artifacts obtained through unauthorized
+   access.
+
+Users must not attempt to infer, extract, or disclose another User's
+private data through unauthorized access to the Platform.
+
+Confidentiality obligations do not apply to information that the User
+can demonstrate was lawfully known without a confidentiality
+obligation, independently developed without misuse of Confidential
+Information, or lawfully obtained from an authorized source.
+
+Nothing in this section restricts legally protected disclosures,
+mandatory legal reporting, lawful security research, or rights that
+cannot be waived under applicable law.
+
+
+7. PLATFORM AND REPOSITORY INTEGRITY
+
+Changes to official Platform repositories and production
+infrastructure may be performed only by authorized maintainers
+through approved procedures.
+
+Unauthorized commits, code injections, configuration changes,
+repository alterations, or infrastructure modifications are prohibited.
+
+Users retain control over commits and changes within their own
+repositories, subject to their permissions and the applicable service
+rules.
+
+No User may alter another User's repository without authorization.
+
+No User may introduce malicious code, exploit code, unauthorized
+persistence mechanisms, or other material intended to compromise the
+Platform or its Users.
+
+External publication, mirroring, redistribution, or commercial
+exploitation of proprietary Platform components requires the
+applicable authorization, except where such restrictions cannot
+lawfully apply.
+
+Nothing in this section prohibits Users from maintaining lawful
+independent repositories or making authorized changes to their own
+software.
+
+
+8. PRIVATE REPOSITORY CONFIDENTIALITY
+
+Private Repositories are intended to be accessible only to their
+respective owners and explicitly authorized collaborators.
+
+The Platform shall enforce repository access controls according to
+its documented security architecture.
+
+Private repository source code shall not be used to train artificial
+intelligence models without the explicit authorization of the
+relevant repository owner.
+
+Private repository contents shall not be intentionally disclosed to
+unauthorized Users.
+
+Encryption, storage isolation, access controls, and key management
+shall be implemented according to the Platform's actual technical
+design and applicable security commitments.
+
+The existence of a Private Repository does not authorize the
+Platform, its maintainers, or other Users to disregard applicable
+privacy and confidentiality obligations.
+
+No provision of this License constitutes a guarantee that any system
+is immune to all vulnerabilities, compromise, data loss, or attacks.
+
+
+9. COPILOT AND CENTRAL AI ARCHITECTURE
+
+The Platform distinguishes between account-specific Copilots and
+Central AI.
+
+9.1. Account-specific Copilot
+
+Each User's Copilot is intended to analyze code and technical
+information within the scope authorized for that User.
+
+The Copilot may identify potential problems and report them to the
+User.
+
+The Copilot may transmit relevant technical artifacts to Central AI
+for further analysis, in accordance with the Platform's documented
+architecture and privacy commitments.
+
+9.2. Central AI
+
+Central AI assists with internal Platform processes and may analyze
+technical artifacts, diagnostic information, structural representations,
+and other authorized inputs to assess errors and formulate proposed
+solutions.
+
+Central AI is not intended to directly read the source code of
+Private Repositories.
+
+Central AI may use structural analysis tools, including AST, CST,
+and other appropriate analysis mechanisms, to assess technical
+problems and prepare candidate solutions.
+
+The actual information available to Central AI shall be limited by
+the Platform's implemented access controls and data-flow restrictions.
+
+9.3. User authorization
+
+Central AI and the Copilot do not possess autonomous authority to
+modify a User's repository.
+
+Proposed patches or other repository modifications must be presented
+to the User for explicit authorization before being applied.
+
+No AI-generated proposal constitutes permission to modify a
+repository, change its contents, or perform an otherwise restricted
+operation.
+
+This requirement does not prevent previously authorized, user-configured
+operations that are explicitly covered by the applicable service rules.
+
+9.4. Neural-network interconnection
+
+The Platform may interconnect or share specified neural-network
+computational capabilities across account-specific Copilots while
+maintaining account-specific vocabularies and designated data boundaries.
+
+Such interconnection does not, by itself, grant a Copilot or Central
+AI permission to access another User's repository.
+
+Shared computational components must operate within the Platform's
+documented data-flow, authorization, and confidentiality constraints.
+
+Vocabulary separation and tensor-level computational separation
+shall not be represented as absolute information-isolation guarantees
+unless supported by the implemented architecture and appropriate
+verification.
+
+9.5. Model training
+
+Private source code shall not be used to train AI models without
+explicit authorization from the relevant repository owner.
+
+Feedback may be used to improve Copilot functionality in accordance
+with the applicable privacy policy and the User's choices.
+
+Feedback collection and model improvement must not be used as a
+means to circumvent the prohibition on unauthorized training with
+private source code.
+
+
+10. SECURITY VULNERABILITY DISCLOSURE
+
+Users who discover a security vulnerability affecting the Platform
+are requested to report it through the designated confidential
+security reporting channel.
+
+Reports should provide sufficient technical information for
+reproduction, assessment, and remediation without unnecessarily
+exposing private data or compromising other systems.
+
+The maintainers will assess reported vulnerabilities internally and
+determine appropriate remediation and disclosure measures.
+
+Users must not exploit a vulnerability to access unauthorized data,
+compromise another account, disrupt services, or obtain Confidential
+Information.
+
+Unauthorized disclosure of credentials, private data, exploitable
+secrets, or vulnerability details that materially endanger the
+Platform or its Users may result in enforcement action where legally
+justified.
+
+The project may pursue available civil or criminal remedies where
+the facts and applicable law support such action.
+
+Nothing in this section prohibits lawful security research, legally
+protected disclosures, reporting to competent authorities, or
+disclosures required by law.
+
+The Platform's internal vulnerability-handling policy does not
+eliminate any reporting obligations imposed by applicable law.
+
+
+11. USER RESPONSIBILITIES
+
+Users are responsible for:
+
+a. maintaining the confidentiality of their credentials;
+b. securing their recovery mechanisms;
+c. using the Platform only within their authorized permissions;
+d. obtaining authorization before accessing another person's data;
+e. ensuring that uploaded materials may lawfully be stored and used;
+f. reviewing proposed AI-generated changes before authorizing them;
+g. complying with applicable law and the service terms.
+
+Users must not upload or distribute malicious material intended to
+compromise the Platform or other Users.
+
+Users must not misrepresent their authorization to access repositories,
+accounts, infrastructure, or confidential materials.
+
+
+12. TRANSPARENCY AND PUBLICATION
+
+The project aims to provide transparency regarding publicly released
+source code, documented security practices, and material changes to
+the Platform.
+
+A component explicitly published under an open-source license is
+governed by that license.
+
+A component published without an explicit open-source license remains
+subject to its applicable proprietary rights and restrictions.
+
+Public visibility does not, by itself, grant permission to redistribute,
+modify, sublicense, or commercially exploit a proprietary component.
+
+Security-sensitive information may be withheld where publication
+would expose credentials, private data, exploitable secrets, or
+materially increase risks to Users or infrastructure.
+
+The project shall not describe a component as open source unless the
+applicable licensing terms satisfy the relevant definition of
+open-source software.
+
+
+13. ENFORCEMENT AND REMEDIES
+
+The Licensor may investigate suspected violations of this License
+within the limits of applicable law.
+
+Where legally justified, the Licensor may:
+
+a. suspend or revoke access to affected services;
+b. restrict access to compromised accounts or resources;
+c. preserve relevant evidence in accordance with applicable law;
+d. request removal of unauthorized distributions;
+e. seek available civil remedies;
+f. report suspected unlawful conduct to competent authorities;
+g. file a complaint where the facts justify doing so.
+
+Any response shall be proportionate to the circumstances and subject
+to applicable law.
+
+Nothing in this License guarantees that a complaint will result in
+prosecution, conviction, damages, or any particular legal outcome.
+
+
+14. SUSPENSION AND TERMINATION
+
+The Licensor may suspend or terminate a User's access where there
+is a reasonable and documented basis to believe that the User has
+materially violated the applicable service terms, compromised
+security, or unlawfully accessed protected resources.
+
+Where practicable and appropriate, the User may be informed of the
+reason for the restriction.
+
+Suspension or termination does not automatically transfer ownership
+of the User's data to the Licensor.
+
+The handling, retention, export, or deletion of User data following
+termination shall be governed by the applicable service terms,
+privacy policy, and mandatory law.
+
+
+15. DISCLAIMER
+
+The Platform is provided subject to applicable law and the specific
+terms governing each service.
+
+To the maximum extent permitted by applicable law, the Licensor
+disclaims warranties that may lawfully be excluded.
+
+Nothing in this License excludes or limits liability, consumer
+protections, or other rights that cannot lawfully be excluded or
+limited.
+
+
+16. CHANGES TO THIS LICENSE
+
+The Licensor may publish revised versions of this License.
+
+A revised version shall identify its version number and publication
+date.
+
+Unless otherwise expressly agreed, a revised version does not
+retroactively remove rights already granted under an earlier
+applicable license.
+
+Continued use of the Platform following a change shall be governed
+by the applicable notice, acceptance mechanism, service terms, and
+mandatory law.
+
+A change to the license governing a published software component
+must be clearly identified for that component.
+
+
+17. SEVERABILITY
+
+If any provision of this License is held invalid or unenforceable,
+the remaining provisions shall remain effective to the extent
+permitted by applicable law.
+
+The invalid provision shall be interpreted or limited only to the
+extent necessary to make it enforceable, where legally permitted.
+
+
+18. NO WAIVER
+
+Failure to enforce a provision of this License does not constitute
+a waiver of that provision or of any other right.
+
+Any waiver must be made by an authorized rights holder and must
+be interpreted according to its express scope.
+
+
+19. GOVERNING LAW AND JURISDICTION
+
+The governing law and competent jurisdiction shall be specified by
+the rights holder in accordance with its legal status, place of
+establishment, and applicable mandatory law.
+
+Nothing in this section excludes a court or authority that has
+mandatory jurisdiction under applicable law.
+
+
+20. CONTACT
+
+Project: Kryptos Tēs Moiras
+
+Security reports:
+security.salvage129@passinbox.com
+
+Legal notices:
+contact.growl937@passinbox.com
+
+License version: 1.0
+Publication year: 2026
