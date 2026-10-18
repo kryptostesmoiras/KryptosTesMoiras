@@ -275,7 +275,7 @@ The following is a proposed starting layout, not a requirement to create every d
 
 ```text
 private-git-platform/
-├── README.md
+├── ReadMe.md
 ├── DIRECTORY_STRUCTURE.md
 ├── LICENSE
 ├── CONTRIBUTING.md
