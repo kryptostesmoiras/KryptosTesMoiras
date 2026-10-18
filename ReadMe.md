@@ -274,7 +274,7 @@ Exact versions, dependencies, cryptographic algorithms, schemas, and service int
 The following is a proposed starting layout, not a requirement to create every directory immediately.
 
 ```text
-private-git-platform/
+KryptosTesMoiras/
 ├── ReadMe.md
 ├── DIRECTORY_STRUCTURE.md
 ├── LICENSE
