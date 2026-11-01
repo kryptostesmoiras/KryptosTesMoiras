@@ -1,3 +1,4 @@
+import { BrandLogo, HeaderBrand } from './BrandLogo';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import {
   ArrowDownToLine, ArrowRight, ArrowUpRight, BookOpen, ChevronRight,
@@ -55,7 +56,7 @@ function Explore({ searchRef }: { searchRef: React.RefObject<HTMLInputElement | 
   function submit(event: FormEvent) { event.preventDefault(); setSubmitted(true); }
   return <>
     <section className="horizontal-banner">
-      <div className="banner-content"><span className="banner-kicker">KRYPTOS TĒS MOIRAS</span><h1>{t('publicProjects')}</h1><p>{t('publishedOnly')}</p>
+      <div className="banner-content"><BrandLogo variant="banner" /><h1>{t('publicProjects')}</h1><p>{t('publishedOnly')}</p>
         <a className="banner-link" href={readme}>{t('readme')}<ArrowUpRight size={15} aria-hidden="true" /></a>
       </div>
       <div className="banner-art" aria-hidden="true"><div className="banner-line line-a" /><div className="banner-line line-b" /><div className="banner-line line-c" /><div className="banner-line line-d" /><div className="banner-tiles"><span /><span /><span /><span /><span /><span /></div></div>
@@ -128,7 +129,7 @@ function Documents() {
 function Specifications({ category }: { category: keyof typeof catalog.pages }) {
   const { t } = usePreferences();
   const topics = catalog.pages[category].topics;
-  return <><div className="page-heading"><span className="page-eyebrow">KRYPTOS TĒS MOIRAS</span><h1>{t(catalog.pages[category].title as MessageKey)}</h1></div>
+  return <><div className="page-heading"><span className="page-eyebrow">KRYPTOS TĒS MOIRAS</span><h1>{t(catalog.pages[category].title as MessageKey)}</h1></div>{category === 'project' && <div className="project-brand"><BrandLogo variant="detailed" /></div>}
     <nav className="spec-category-nav" aria-label={t('navDocs')}>{categories.map(value => <a key={value} href={'#/specs/' + value} aria-current={value === category ? 'page' : undefined}>{t(catalog.pages[value].title as MessageKey)}</a>)}</nav>
     <div className="spec-list">{topics.map(topic => {
       const spec = catalog.topics[topic as keyof typeof catalog.topics];
@@ -181,7 +182,7 @@ export default function App() {
   const active = (value: Route) => route === value ? 'page' as const : undefined;
   return <div className="app">
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); document.getElementById('main')?.focus(); }}>{t('skipToContent')}</a>
-    <header className="topbar"><div className="topbar-inner"><a className="wordmark" href="#/explore"><strong>KRYPTOS</strong><span>TĒS MOIRAS</span></a><span className="header-divider" aria-hidden="true">/</span><span className="header-location">{t(title)}</span>
+    <header className="topbar"><div className="topbar-inner"><a className="wordmark" href="#/explore"><HeaderBrand /></a><span className="header-divider" aria-hidden="true">/</span><span className="header-location">{t(title)}</span>
       <button type="button" className="quick-search" onClick={focusSearch}><Search size={15} aria-hidden="true" /><span>{t('search')}</span><kbd>/</kbd></button>
       <PreferenceControls /><a className="guest-badge" href={requirements}><span />{t('guest')}</a>
       <button ref={menuButtonRef} className="menu-button" type="button" aria-label={t('navigation')} aria-expanded={menuOpen} aria-controls="app-sidebar" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>

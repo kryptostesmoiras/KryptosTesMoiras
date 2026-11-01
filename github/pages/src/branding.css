@@ -1,0 +1,18 @@
+.brand-logo{display:block;max-width:100%;flex-shrink:0;overflow:hidden}
+.brand-logo-banner{width:245px;height:auto;aspect-ratio:2021/268}
+.brand-logo-icon{width:36px;height:36px}
+.brand-logo-detailed{width:min(680px,100%);height:auto;aspect-ratio:1990/562}
+.brand-compact{display:none}
+.wordmark{min-width:0;line-height:1}
+.project-brand{padding:25px 28px;margin:0 0 25px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.documentation-brand{padding:0 0 28px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+.documentation-brand .brand-logo{width:min(640px,100%)}
+.banner-content>.brand-logo{width:min(460px,100%);margin-bottom:17px}
+[data-theme=dark] .brand-logo,[data-theme=plum] .brand-logo,[data-theme=terminal] .brand-logo{filter:brightness(0) invert(1)}
+@media(max-width:1200px){.brand-logo-banner.brand-full{width:210px}}
+@media(max-width:760px){.brand-full{display:none}.brand-compact{display:block}.brand-logo-icon{width:33px;height:33px}.project-brand{padding:20px;margin-bottom:22px}.documentation-brand{padding-bottom:22px;margin-bottom:25px}.banner-content>.brand-logo{margin-bottom:20px}}
+/* Keep the Rust signature and its internal color contrast faithful to the approved asset. */
+.project-brand,.documentation-brand{background:#fff}
+.documentation-brand{padding:22px;border:1px solid var(--line);border-radius:8px}
+.project-brand .brand-logo,.documentation-brand .brand-logo{filter:none}
+@media(max-width:760px){.documentation-brand{padding:16px}}
