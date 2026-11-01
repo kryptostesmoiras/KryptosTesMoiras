@@ -157,21 +157,25 @@ jobs:
         run: |
           set -euo pipefail
           expected=$(git -C _project-pages rev-parse HEAD)
-          requested=false
-          for attempt in $(seq 1 30); do
+          requests=0
+          last_request=-3
+          for attempt in $(seq 1 40); do
             gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > "$RUNNER_TEMP/latest-project-build.json"
             read -r commit status < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p.get("commit", "unknown"), p.get("status", "unknown"))' "$RUNNER_TEMP/latest-project-build.json")
             if [[ "$commit" == "$expected" && "$status" == 'built' ]]; then
               echo "Project Pages published $expected"
               exit 0
             fi
-            if [[ "$commit" == "$expected" && "$status" == 'errored' && "$requested" == true ]]; then
-              echo 'GitHub Pages reported a project build failure.' >&2
-              exit 1
-            fi
-            if [[ "$status" != 'queued' && "$status" != 'building' && "$requested" == false ]]; then
+            # Pages may reject a deployment while its predecessor is still
+            # being released. Retry failed branch builds with a one-minute gap.
+            if [[ "$status" != 'queued' && "$status" != 'building' && $((attempt - last_request)) -ge 4 ]]; then
+              if [[ "$requests" -ge 4 ]]; then
+                echo 'Pages did not publish after four spaced build requests.' >&2
+                exit 1
+              fi
               gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds" --silent
-              requested=true
+              requests=$((requests + 1))
+              last_request=$attempt
             fi
             sleep 15
           done
