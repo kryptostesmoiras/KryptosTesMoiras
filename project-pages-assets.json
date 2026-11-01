@@ -1,6 +1,5 @@
 {
   "files": [
-    "favicon.svg",
     "documents.json",
     "discussions.json",
     "index.html",
@@ -8,12 +7,14 @@
     "assets/zh-BH1hZuFx.js",
     "assets/uk-BjNs7XwP.js",
     "assets/he-UJjwQgKr.js",
+    "assets/application-profile-Bosa18zp.png",
+    "assets/detailed-rust-lJn8Fx8K.png",
     "assets/da-C2jw193F.js",
     "assets/ko-DVqmHmvL.js",
+    "assets/index-DF-Jwbpz.js",
     "assets/nl-B4nA8asv.js",
-    "assets/index-CXePwAzf.css",
+    "assets/banner-Oyb_TvJO.png",
     "assets/hi-B8oTaEbc.js",
-    "assets/index-zgmgIwxC.js",
     "assets/ja-DJPNjnzg.js",
     "assets/tr-mr2GMYBq.js",
     "assets/ru-DVudh1eB.js",
@@ -23,6 +24,7 @@
     "assets/el-DNZCF1CL.js",
     "assets/de-CGJ-dvoz.js",
     "assets/pt-lPgjgg2O.js",
+    "assets/index-Cly7ys7t.css",
     "assets/sv-OKz8EmS4.js",
     "assets/ar-D_FPjqUO.js"
   ]
