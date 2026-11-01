@@ -17,7 +17,7 @@ The public static website is in [`github/pages/`](github/pages/). English is its
 
 No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
 
-The public `.io` site is intended to link to the owner-configured onion service; actual accounts remain exclusively on Tor. The owner will supply that address locally. This static website does not implement accounts or proxy Tor traffic.
+The public `.io` site is intended to provide search over projects explicitly made public by their owners, with limited guest access. A planned desktop application manages connections between users and the onion server. Anonymous accounts belong to that private service. The current website contains only the search interface; no index, account service, desktop download or connection manager is supplied.
 
 To view the site from the repository root:
 
@@ -26,6 +26,19 @@ python3 -m http.server 8080 --directory github/pages
 ```
 
 See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
+
+## Public search, desktop client and anonymous accounts
+
+These requirements supersede the former public-site flow asking visitors to open a private workspace through Tor Browser.
+
+- **Publication is opt-in:** only projects explicitly made public by their owners are eligible for public search. Private, unpublished or withdrawn projects must not appear in results, suggestions, snippets, caches or public feeds. Publishing one project must not expose other projects belonging to the same account.
+- **Search feeds:** the public index must receive only authorized publication events and permitted fields. Ownership, visibility and revocation must be enforced before ingestion and at query time. Public fields, freshness, cache removal and withdrawal behavior still require a precise protocol.
+- **Guest access:** search is available with limits without an account. No numeric quota has been selected. Limits must be enforced by the future service; the static website does not enforce them or claim to provide live search.
+- **Desktop application:** the client manages user connections to the onion server. The public website presents the client rather than asking visitors to copy an onion address into Tor Browser. Client technology, distribution, authentication and connection protocols remain to be selected. No desktop source code or executable is included here.
+- **Anonymous accounts:** anonymity is a required property to design and validate, not an implemented guarantee. Registration must not require a real name, email address or telephone number. Authentication, secret recovery, logging, connection metadata and cross-service correlation require a documented threat model. An account may authenticate without disclosing a civil identity; the credential scheme is not yet selected.
+- **Network boundary:** an ordinary connection to the public `.io` site can expose network metadata to its serving infrastructure. Account anonymity must therefore cover transport and operational logging as well as profile fields. Guest limiting must not silently introduce persistent identity tracking.
+
+The static preview sends no search query, returns no simulated results and contains no sample projects. A future search service and desktop client require separate implementation work.
 
 ## Contents
 

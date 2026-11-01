@@ -153,6 +153,14 @@ Where technically practical, the project should verify that model weights and tr
 
 Claims about data isolation, absence of training, and deletion must be backed by code review, configuration review, tests, and operational controls. A policy statement alone is not proof of implementation.
 
+### 6.6 Public search and anonymous accounts
+
+Public search may index only projects deliberately made public by their owners. Private and unpublished projects must be excluded from public feeds, results, snippets, suggestions and caches. Withdrawal and visibility changes must revoke index eligibility and cached exposure. One published project must not reveal other projects or private account metadata.
+
+Account anonymity is a design requirement. Do not require civil identity, email or phone numbers for registration. Define authentication, key loss and recovery separately, and review logs, transport metadata, abuse controls and linkage between public search and the private account service. A planned desktop client manages onion connections; the public site supplies no account service or assurance of verified anonymity.
+
+An ordinary public-web connection does not itself conceal a visitor's IP address from the serving infrastructure. The anonymity threat model must cover that boundary and the desktop transport. Guest search limits must not rely on undisclosed persistent identity tracking.
+
 ## 7. Triage and Remediation
 
 After receiving a report, maintainers should aim to:

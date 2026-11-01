@@ -19,7 +19,7 @@ The owner's existing `app/` has not been imported, renamed, merged or modified. 
 5. **Signed approvals:** define action binding, expiry, replay protection, revocation and lost-device recovery. The website does not implement these controls.
 6. **Economics and license:** clarify ordinary free access, paid ancillary domain services, external provider costs, contribution rights and commercial agreements. The proprietary license was not changed during cleanup.
 7. **Royalties and treasury:** define rates through agreements, reproducible calculations, settlement confirmation, reconciliation and separation of operating funds from third-party liabilities. No payment or wallet service is active here.
-8. **Deployment:** the public site is intended for `.io`; accounts remain on Tor. Domain, HTTPS, onion deployment and the official address are owner-controlled and are not supplied by the static site.
+8. **Deployment:** the public `.io` site is a search entry point for owner-published projects, with guest limits. The planned desktop client manages onion connections and anonymous accounts. Domain, HTTPS, search feeds, client distribution, anonymity and transport protocols remain to be implemented and verified.
 
 ## Corrections retained
 

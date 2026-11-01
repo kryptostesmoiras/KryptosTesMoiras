@@ -21,6 +21,6 @@ Project documentation and the default website content are in English. Other webs
 
 This checkout contains documents and a static public website in `github/pages/`. No backend, database, account service, Rust workspace, `apps/` tree or server implementation is included. The owner's existing local `app/` is separate and has not been accessed or replaced.
 
-The public portal is intended to link to an owner-configured onion service. Actual accounts belong exclusively to that separate private service. The interface preview contains no accounts, repository data or sample projects. Website language/theme preferences are the only browser-persisted values.
+The public portal is intended to offer limited guest search over owner-published projects. A planned desktop client manages connections to the onion server; anonymous accounts belong to the private service. The interface preview contains no accounts, repository data or sample projects. Website language/theme preferences are the only browser-persisted values.
 
 Git hosting may store any programming language. Rust refers to the proposed platform backend, not a restriction on users' projects. Building code, running applications, AI analysis, Sentinel, payments and recovery controls remain separate implementation work.

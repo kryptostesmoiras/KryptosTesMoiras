@@ -1,6 +1,6 @@
 # Website specification coverage
 
-The static public site is in `github/pages/`. English is its default and fallback language. It presents the project and an empty interface preview, with no accounts, repository data or sample projects.
+The static public site is in `github/pages/`. English is its default and fallback language. The home page is a search interface without a connected index. The desktop page replaces the former Tor Browser instructions. No accounts, repository data or sample projects are included.
 
 ## Document-to-page mapping
 
@@ -26,7 +26,8 @@ The static public site is in `github/pages/`. English is its default and fallbac
 | Optional VPN and wallet require separate decisions | [Presentation](../../ReadMe.md#open-decisions), [financial model](../FinancialModel.md) | `project.html#extensions` |
 | Project ownership, proprietary license and third-party terms | [License](../../License), [contribution rules](../../Contributing.md) | `project.html#rights` |
 | Source policies and contribution/structure documents | [Documentation index](../README.md) | `documents.html` |
-| Public portal; real accounts only on the separate Tor service | [Presentation](../../ReadMe.md#website-only-scope-of-this-checkout) | `access.html` |
+| Owner-published projects only; limited guest search | [Search requirements](../../ReadMe.md#public-search-desktop-client-and-anonymous-accounts) | `index.html` — interface only; no connected index |
+| Desktop connections to the onion server; anonymous accounts | [Client and account requirements](../../ReadMe.md#public-search-desktop-client-and-anonymous-accounts) | `access.html` — planned client; no download or account service |
 
 The catalog at `github/pages/shared/spec-catalog.json` records each topic's source and status. Displaying a planned topic does not activate a service. No sign-in, repository mutation, payment or private API is supplied by the website.
 
@@ -46,4 +47,8 @@ From the repository root:
 python3 -m http.server 8080 --directory github/pages
 ```
 
-This uses Python's built-in static file server; no custom server source, Rust toolchain or database is needed. The owner configures the onion address locally in `github/pages/config.js`. This does not create a Tor service or publish the site.
+This uses Python's built-in static file server; no custom server source, Rust toolchain or database is needed. The former public onion-link configuration has been removed. Connection management belongs to the planned desktop client. This website does not create a Tor service or publish the site.
+
+## Interface presentation
+
+The home page has one search field and short factual labels. Submitting a query reports that the index is not connected; no query is transmitted or stored. The published-only and guest-limit labels describe requirements, not an active index or quota service. Technical descriptions on the specification pages are expandable; their source links remain visible.
