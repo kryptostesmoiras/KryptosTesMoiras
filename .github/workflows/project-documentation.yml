@@ -151,6 +151,30 @@ jobs:
             git -C _project-pages -c credential.helper= -c credential.helper='!gh auth git-credential' push origin "HEAD:$PAGES_BRANCH"
           fi
 
+      - name: Cancel superseded Pages deployments
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          expected=$(git -C _project-pages rev-parse HEAD)
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > "$RUNNER_TEMP/pages-before-cleanup.json"
+          if python3 -c 'import json,sys; p=json.load(open(sys.argv[1])); sys.exit(0 if p.get("commit")==sys.argv[2] and p.get("status")=="built" else 1)' "$RUNNER_TEMP/pages-before-cleanup.json" "$expected"; then
+            exit 0
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds" --jq '.[0:10][].commit' | sort -u > "$RUNNER_TEMP/previous-pages-commits.txt"
+          while IFS= read -r previous; do
+            if [[ "$previous" == "$expected" || ! "$previous" =~ ^[0-9a-f]{40}$ ]]; then
+              continue
+            fi
+            if gh api "repos/$GITHUB_REPOSITORY/pages/deployments/$previous" --jq '.status' > "$RUNNER_TEMP/previous-pages-status.txt" 2>/dev/null; then
+              state=$(cat "$RUNNER_TEMP/previous-pages-status.txt")
+              if [[ "$state" == 'deployment_in_progress' || "$state" == 'deployment_queued' ]]; then
+                echo "Canceling superseded Pages deployment $previous"
+                gh api --method POST "repos/$GITHUB_REPOSITORY/pages/deployments/$previous/cancel" --silent
+              fi
+            fi
+          done < "$RUNNER_TEMP/previous-pages-commits.txt"
+
       - name: Request and verify project Pages build
         env:
           GH_TOKEN: ${{ github.token }}
