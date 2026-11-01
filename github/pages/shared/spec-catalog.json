@@ -68,7 +68,7 @@
     "sourceBoundary": {
       "status": "planned",
       "source": "Security.md",
-      "anchor": "63-local-processing-and-central-model-architecture",
+      "anchor": "631-hosted-repository-source-boundary-and-cst-artifacts",
       "icon": "◇"
     },
     "training": {
