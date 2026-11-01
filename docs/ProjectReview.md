@@ -38,4 +38,4 @@ The requested web migration uses React, TypeScript and Vite under `github/pages/
 
 ## Publication destinations
 
-The root `https://kryptostesmoiras.github.io/` is the public website. `https://kryptostesmoiras.github.io/KryptosTesMoiras/` is the project Markdown, license and Discussions subsite. The workflow builds both TSX entries together and must preserve this separation.
+The root `https://kryptostesmoiras.github.io/` is the public website. `https://kryptostesmoiras.github.io/KryptosTesMoiras/` is the project Markdown, license and Discussions subsite. The hosting workflow publishes the root website; the project Pages workflow publishes the standalone Markdown/license reader. Combined local builds and the hosting fallback folder preserve the same two URL paths.

@@ -1,0 +1,100 @@
+name: Publish project documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.md'
+      - '**.markdown'
+      - License
+      - 'github/pages/**'
+      - '.github/workflows/project-documentation.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '2-57/15 * * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  discussions: read
+
+concurrency:
+  group: project-documentation-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out project source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Use workflow publication for the project Pages site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' '{"build_type":"workflow"}' > "$RUNNER_TEMP/pages-source.json"
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" --input "$RUNNER_TEMP/pages-source.json" --silent
+
+      - name: Read public Discussions metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/kryptostesmoiras/kryptostesmoiras.github.io > "$RUNNER_TEMP/discussions-repository.json"
+          enabled=$(python3 -c 'import json,sys; print(str(json.load(open(sys.argv[1])).get("has_discussions",False)).lower())' "$RUNNER_TEMP/discussions-repository.json")
+          export DISCUSSIONS_ENABLED="$enabled"
+          if [[ "$enabled" == true ]]; then
+            gh api graphql -f query='query { repository(owner:"kryptostesmoiras", name:"kryptostesmoiras.github.io") { discussions(first:30, orderBy:{field:UPDATED_AT,direction:DESC}) { nodes { title url comments { totalCount } } } } }' > "$RUNNER_TEMP/discussions.json"
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone
+          import json, os
+          enabled = os.environ['DISCUSSIONS_ENABLED'] == 'true'
+          items = []
+          if enabled:
+              data = json.loads((Path(os.environ['RUNNER_TEMP']) / 'discussions.json').read_text())
+              items = [{'title': row['title'], 'url': row['url'], 'comments': row['comments']['totalCount']}
+                       for row in data['data']['repository']['discussions']['nodes']]
+          target = Path('github/pages/public/KryptosTesMoiras/discussions.json')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(json.dumps({'enabled': enabled,
+              'url': 'https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/discussions',
+              'items': items, 'checkedAt': datetime.now(timezone.utc).isoformat()}))
+          PY
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: github/pages/package-lock.json
+
+      - name: Install locked dependencies
+        working-directory: github/pages
+        run: npm ci --no-audit --no-fund
+
+      - name: Build documentation and license only
+        working-directory: github/pages
+        run: npm run build:docs
+
+      - name: Configure project Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload standalone documentation
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: github/pages/dist-project-docs
+
+      - name: Deploy project documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

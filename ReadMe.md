@@ -32,7 +32,7 @@ npm ci
 npm run dev
 ```
 
-Open `/` for the website and `/KryptosTesMoiras/` for documentation. `npm run build` checks TypeScript, collects documents and builds both TSX entries into `github/pages/dist/`. `npm run preview` serves that result. The hosting workflow retrieves this source, checks for changes every five minutes and publishes both destinations together. See the [publication procedure](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/blob/main/docs/publishing.md).
+Open `/` for the website and `/KryptosTesMoiras/` for documentation. `npm run build` checks TypeScript, collects documents and builds both TSX entries into `github/pages/dist/`. `npm run preview` serves that result. The hosting repository publishes the root website and a documentation fallback folder. The project’s own `Publish project documentation` workflow publishes the standalone reader at the project Pages URL, with all assets scoped under `/KryptosTesMoiras/`. Source changes trigger that documentation deployment directly; periodic runs refresh public discussion metadata. See the [publication procedure](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/blob/main/docs/publishing.md).
 
 See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
 
