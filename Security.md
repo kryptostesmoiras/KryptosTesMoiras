@@ -161,6 +161,10 @@ Account anonymity is a design requirement. Do not require civil identity, email 
 
 An ordinary public-web connection does not itself conceal a visitor's IP address from the serving infrastructure. The anonymity threat model must cover that boundary and the desktop transport. Guest search limits must not rely on undisclosed persistent identity tracking.
 
+### 6.7 Desktop vault and provider policies
+
+All source created, generated or imported through the planned desktop app must enter authenticated encrypted local storage. Hashes provide integrity and authorized content identification; they do not replace encryption or recoverable storage. Provider restrictions must be enforced before egress, with no direct source or vault access, no raw CST transmission and no plaintext fallback. Repository publication requires user authorization and independent server checks. An inviolable vault is an objective requiring threat modeling and review, not an absolute guarantee. See [desktop vault requirements](docs/architecture/desktop-vault.md).
+
 ## 7. Triage and Remediation
 
 After receiving a report, maintainers should aim to:

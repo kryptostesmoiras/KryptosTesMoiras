@@ -13,13 +13,14 @@ Project documentation and the default website content are in English. Other webs
 | [Financial model](FinancialModel.md) | Funding, domains, accounting and treasury principles |
 | [Royalties](Royalties.md) | Agreements, calculations, statements and payments |
 | [License](../License) | Existing proprietary license; not rewritten by this cleanup |
-| [Static website](../ReadMe.md#website-only-scope-of-this-checkout) | Website scope and local preview instructions |
+| [Public React/TSX interface](../ReadMe.md#public-web-interface) | Website scope and local preview instructions |
+| [Desktop editor and vault](architecture/desktop-vault.md) | Editor, encrypted source storage, provider restrictions, official publication and platform downloads |
 | [Website specification coverage](architecture/site-specifications.md) | How product pages map to the Markdown requirements |
 | [Project review](ProjectReview.md) | Remaining design decisions and current limits |
 
 ## Delivery boundary
 
-This checkout contains documents and a static public website in `github/pages/`. No backend, database, account service, Rust workspace, `apps/` tree or server implementation is included. The owner's existing local `app/` is separate and has not been accessed or replaced.
+This checkout contains documents and a React/TypeScript frontend in `github/pages/`. The authorized frontend source is included; no backend, database, account service, Rust workspace, `apps/` tree or server implementation is included. The owner's existing local `app/` is separate and has not been accessed or replaced.
 
 The public portal is intended to offer limited guest search over owner-published projects. A planned desktop client manages connections to the onion server; anonymous accounts belong to the private service. The interface preview contains no accounts, repository data or sample projects. Website language/theme preferences are the only browser-persisted values.
 

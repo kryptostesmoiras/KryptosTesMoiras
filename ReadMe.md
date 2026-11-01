@@ -2,7 +2,7 @@
 
 > **Status:** Initial design — architecture and technical choices remain subject to validation.  
 > **Platform backend language:** Rust; hosted projects may use any language\
-> **Web UI candidate:** Leptos  
+> **Public web UI:** React + TypeScript (TSX)\
 > **Initial deployment target:** One machine with 64 GB RAM  
 > **Planned private access:** Tor onion service  
 > **Scope:** Private Git hosting, administration, independent supervision, and recoverable security controls.
@@ -11,21 +11,31 @@ This project aims to build a private source-code hosting platform inspired by mo
 
 **This repository describes a proposed design. It does not imply that every listed component has been implemented or security-reviewed.** Components and directories should be added incrementally as requirements become clear; avoid empty placeholders and premature service fragmentation.
 
-## Website-only scope of this checkout
+## Public web interface
 
-The public static website is in [`github/pages/`](github/pages/). English is its default language, with twenty selectable translations. The site contains HTML, CSS, JavaScript and local translation files only. It includes an empty interface preview with no accounts, repository data or sample projects.
+The public web interface is in [`github/pages/`](github/pages/), built with React, TypeScript (TSX) and Vite. English is the default, with twenty selectable languages and four themes plus system mode. The interface has a horizontal project banner, sidebar navigation, repository/website tabs and a search preview without sample projects or a connected index.
 
-No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
+The frontend source is included. No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
 
 The public `.io` site is intended to provide search over projects explicitly made public by their owners, with limited guest access. A planned desktop application manages connections between users and the onion server. Anonymous accounts belong to that private service. The current website contains only the search interface; no index, account service, desktop download or connection manager is supplied.
 
-To view the site from the repository root:
+To run the web interface from the repository root (Node.js 22.12+ or 24 LTS):
 
 ```sh
-python3 -m http.server 8080 --directory github/pages
+cd github/pages
+npm ci
+npm run dev
 ```
 
+Open the local URL printed by Vite. `npm run build` checks TypeScript and builds the static deployment into `github/pages/dist/`; `npm run preview` serves that build. Deploy the contents of `dist/`, not the TSX source folder. The single `index.html` is the browser bootstrap; page layouts and interactions are React components.
+
 See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
+
+## Desktop editor and source vault
+
+The planned desktop client includes a lightweight VS Code-like editor, local authenticated encryption for all source files created/generated/imported in the app, hash-based integrity and authorized artifact sharing, and configurable provider restrictions. It is the official publishing client for the account’s assigned remote repository. The goal of an inviolable vault requires a threat model and independent verification; hashing alone cannot store recoverable source.
+
+Windows, macOS and Linux downloads are planned; Android and iOS/iPadOS are additional targets to validate. Download links activate only when real verified builds exist. See the [desktop vault specification](docs/architecture/desktop-vault.md) for requirements and open protocol decisions.
 
 ## Public search, desktop client and anonymous accounts
 
@@ -38,7 +48,7 @@ These requirements supersede the former public-site flow asking visitors to open
 - **Anonymous accounts:** anonymity is a required property to design and validate, not an implemented guarantee. Registration must not require a real name, email address or telephone number. Authentication, secret recovery, logging, connection metadata and cross-service correlation require a documented threat model. An account may authenticate without disclosing a civil identity; the credential scheme is not yet selected.
 - **Network boundary:** an ordinary connection to the public `.io` site can expose network metadata to its serving infrastructure. Account anonymity must therefore cover transport and operational logging as well as profile fields. Guest limiting must not silently introduce persistent identity tracking.
 
-The static preview sends no search query, returns no simulated results and contains no sample projects. A future search service and desktop client require separate implementation work.
+The frontend preview sends no search query, returns no simulated results and contains no sample projects. A future search service and desktop client require separate implementation work.
 
 ## Contents
 
@@ -283,7 +293,8 @@ Operations that may require phone approval include security-policy changes, priv
 | Area | Current candidate or rule | Decision status |
 |---|---|---|
 | Backend and custom logic | Rust | Target |
-| Web interface | Leptos, Rust, HTML/CSS | Proposed; validate with a prototype |
+| Public web interface | React + TypeScript (TSX), Vite | Frontend implemented; no connected backend |
+| Desktop editor and vault | Framework and encrypted storage format to select | Requirements documented; no desktop implementation |
 | Animation | CSS first | Proposed |
 | Internal API | Rust API with strict authentication and authorization | To design |
 | Real-time updates | WebSocket only where necessary | To design |

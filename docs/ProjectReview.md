@@ -1,10 +1,10 @@
 # Project review — Kryptos Tēs Moiras
 
-Scope: project documents and the public static website. This is a documentation review, not an audit of the owner's existing application or infrastructure.
+Scope: project documents and the public React/TSX interface. This is a documentation review, not an audit of the owner's existing application or infrastructure.
 
 ## Current scope
 
-The deliverable contains English documentation and the public HTML website under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. Its interface preview contains no accounts, repository data or sample projects.
+The deliverable contains English documentation and the public React/TypeScript interface under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. Its interface preview contains no accounts, repository data or sample projects.
 
 The assistant-created Rust server, SQLite data, private account UI, `apps/`, backend manifests, build outputs and backend-specific tools have been removed. They were outside the requested website/documentation scope. Their earlier test results must not be represented as capabilities of this website or of the owner's local application.
 
@@ -31,3 +31,7 @@ The owner's existing `app/` has not been imported, renamed, merged or modified. 
 - English is the first/default website language; translations remain available by user choice.
 
 See the [coverage matrix](architecture/site-specifications.md) for the mapping between source documents and website topics.
+
+## Frontend migration
+
+The requested web migration uses React, TypeScript and Vite under `github/pages/`, with a horizontal banner, typographic wordmark and Git-style navigation. The former authored HTML pages and their scripts/styles were removed. No backend or desktop implementation was added. The desktop framework remains a separate decision.
