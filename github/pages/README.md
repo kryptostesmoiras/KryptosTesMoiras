@@ -1,23 +1,23 @@
-# Portail public Kryptos Tēs Moiras
+# Kryptos Tēs Moiras public portal
 
-Copie statique autonome : HTML, CSS, JavaScript, vingt langues et quatre thèmes plus le mode système. Les chemins prennent en charge un hébergement à la racine ou sous un sous-dossier GitHub Pages.
+Standalone static website: HTML, CSS and JavaScript. English is the default language; all twenty languages and four themes plus system mode remain available. Asset paths support both root hosting and a subdirectory.
 
-## Voir le site localement
+## Run on your PC
 
-Depuis la racine du dépôt :
+Extract this archive into your local KryptosTesMoiras directory, then run from that directory:
 
 ```sh
 python3 -m http.server 8080 --directory github/pages
 ```
 
-Ouvrir le serveur avec un navigateur. Un double-clic sur un HTML ne suffit pas pour charger les traductions JSON : utiliser un serveur HTTP.
+Open the local server in your browser. Use an HTTP server rather than opening the HTML with a file URL, so JSON translations can load.
 
-## GitHub Pages
+## Private access
 
-Ce dossier contient les fichiers à publier ; sa présence dans GitHub ne l’active pas comme site. GitHub Pages accepte les sources de branche à la racine ou dans `docs/`. Pour publier précisément `github/pages/`, choisir une publication par GitHub Actions et utiliser ce dossier comme artefact Pages.
+The public portal has no sign-in form. The demo uses fictional in-memory projects only. The Rust backend, private application, databases, real accounts and private repositories are excluded.
 
-## Accès privé
+The onion address is blank by default. Its owner can configure it in `config.js`; never put private keys there. This portal does not proxy Tor traffic or automatically launch Tor Browser.
 
-Le portail public ne contient aucun formulaire de connexion. La démo utilise exclusivement des projets fictifs en mémoire. Le serveur Rust, l’application privée, les bases, les comptes réels et les dépôts privés ne sont pas inclus.
+## Hosting
 
-L’adresse onion reste vide par défaut. Le propriétaire peut la renseigner dans `config.js` ; aucune clé privée ne doit y figurer. Le portail n’est pas un proxy vers Tor et le simple lien n’ouvre pas Tor Browser automatiquement.
+These files can be served by a static web server. This archive does not activate GitHub Pages, register a domain or deploy a Tor service.

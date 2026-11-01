@@ -129,7 +129,7 @@ Suspension or termination does not by itself erase royalties already accrued. Fi
 
 This document should be read alongside:
 
-- `FinancialModel.md`, which describes the platform's overall financial model;
+- [`FinancialModel.md`](FinancialModel.md), which describes the platform's overall financial model;
 - the applicable application distribution agreement;
 - the platform's terms for publishers and users;
 - any third-party license terms that apply to the distributed application.

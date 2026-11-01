@@ -125,7 +125,7 @@
   "errorFile": "Invalid file or commit message.",
   "sessionExpired": "Your session expired. Sign in again.",
   "spec_git_title": "Private repositories, real history",
-  "spec_git_text": "The prototype supports accounts, private repositories, text files and commits on main. Source is accessible only to its authenticated owner on the Tor side.",
+  "spec_git_text": "The planned platform provides private repositories and history. This website contains only a fictional, read-only demonstration; accounts and repository operations belong to the owner’s separate private service.",
   "spec_teams_title": "Collaboration and the Git lifecycle",
   "spec_teams_text": "Branches, tags, diffs, issues, pull requests, releases, organizations, roles, SSH and signing keys belong to the project. Collaboration and native Git transports still need implementation.",
   "spec_hosting_title": "Your language, your environment",

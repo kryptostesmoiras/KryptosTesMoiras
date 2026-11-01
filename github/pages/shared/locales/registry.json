@@ -1,10 +1,10 @@
 {
-  "fr": {
-    "name": "Français",
-    "dir": "ltr"
-  },
   "en": {
     "name": "English",
+    "dir": "ltr"
+  },
+  "fr": {
+    "name": "Français",
     "dir": "ltr"
   },
   "de": {

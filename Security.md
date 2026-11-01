@@ -1,6 +1,6 @@
 # Security Policy
 
-> **Project:** KyptosTesMoiras  
+> **Project:** Kryptos Tēs Moiras\
 > **Status:** Initial security policy — to be validated and updated as the project develops  
 > **Primary language:** Rust  
 > **Remote access target:** Tor onion service  
@@ -8,7 +8,7 @@
 
 ## 1. Purpose
 
-Security, confidentiality, and user control are core design requirements of KyptosTesMoiras. This policy describes how to report vulnerabilities, how reports should be handled, and the principles governing security fixes, AI data handling, and incident response.
+Security, confidentiality, and user control are core design requirements of Kryptos Tēs Moiras. This policy describes how to report vulnerabilities, how reports should be handled, and the principles governing security fixes, AI data handling, and incident response.
 
 The project is under active design and development. Until a feature has been implemented and tested, its intended design must not be interpreted as a guarantee that the feature is operational or secure. Any statement in this policy describing a design objective must be verified against the actual implementation before it is represented as an implemented guarantee.
 
@@ -18,11 +18,11 @@ The project is under active design and development. Until a feature has been imp
 
 Report suspected vulnerabilities through the project's designated private security contact:
 
-- **Security contact:** `[INSERT SECURITY EMAIL ADDRESS]`
-- **Alternative secure contact:** `[INSERT ALTERNATIVE CONTACT, IF AVAILABLE]`
-- **Project repository:** `[INSERT REPOSITORY URL]`
+- **Security contact:** `security.salvage129@passinbox.com`
+- **Alternative secure contact:** Not configured
+- **Project repository:** https://github.com/kryptostesmoiras/KryptosTesMoiras
 
-Replace the placeholders above before publishing this policy. Do not put private keys, passwords, recovery codes, access tokens, or personal data in a report.
+The contact address is taken from the existing `License`; its monitoring and receipt have not been verified here. Do not put private keys, passwords, recovery codes, access tokens, or personal data in a report.
 
 If no private reporting channel has been published yet, do not assume that a public issue is confidential. Contact the project maintainers through an available private channel, if one exists, and share only the minimum information necessary to establish contact.
 
@@ -119,6 +119,14 @@ In the **strict-confidentiality mode**, source code must not be sent to the cent
 Consequently, when the central service receives only such metadata and no code or reversible representation of it, it cannot directly inspect the source code. Code analysis requiring source content must be performed locally, or use a separately designed privacy-preserving computation mechanism whose actual security properties have been independently evaluated.
 
 Encryption in transit protects data while it is transmitted; it does not make plaintext visible only as a hash to the receiving endpoint. If a different operating mode sends code or code excerpts to a remote inference service, that mode must be explicitly identified, must explain what is transmitted and to whom, and must not be described as a mode in which the central service never receives the code. Remote processing must follow the user's selected policy and the applicable disclosure and consent requirements.
+
+### 6.3.1 Hosted repository source boundary and CST artifacts
+
+For hosted repositories, the AI must not directly access source code, browse raw repository files or receive source-bearing logs. User authorization and provider selection must not bypass that boundary. A separate analyzer may produce approved hashes and filtered CST-derived artifacts using a versioned output allowlist.
+
+Raw CSTs can preserve tokens, comments, identifiers and literals. They are not automatically confidential and must not be transmitted unchanged. Unknown fields, unsupported parser outputs and filtering failures must fail closed rather than forwarding source content. Hashes support identity and change detection, not semantic analysis of unseen code.
+
+The schema, filtering, retention and isolation controls remain design requirements requiring implementation and verification. No AI service, source analyzer or backend is connected to the static website.
 
 ### 6.4 No retention by default
 

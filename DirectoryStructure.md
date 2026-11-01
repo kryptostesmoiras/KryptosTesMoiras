@@ -10,6 +10,12 @@ This document describes the planned structure of the Private and Secure Git Plat
 
 **Create directories and workspace members when implementation begins. Do not create empty placeholders merely to match this tree.** Start with a small, buildable workspace and introduce additional processes only when a clear security, reliability, or operational boundary justifies them.
 
+## Current website files
+
+The implemented website lives only in `github/pages/`. This checkout contains policy documents and a static website; no backend, database, build toolchain, `apps/` or `services/` directory is supplied. The owner's existing `app/` is outside this cloud task and must not be replaced by the proposed tree below.
+
+The tree is a future design sketch, not the current filesystem inventory. Repository contents may use any language; Rust refers to the planned platform backend.
+
 ## 1. Design rules
 
 1. **Rust first:** use Rust for backend services and project-specific logic wherever practical.
@@ -24,7 +30,7 @@ This document describes the planned structure of the Private and Secure Git Plat
 ## 2. Proposed repository tree
 
 ```text
-KyptosTesMoiras/
+KryptosTesMoiras/
 ├── ReadMe.md
 ├── DirectoryStructure.md
 ├── License
@@ -244,11 +250,11 @@ Some directories in this tree are intentionally shown without their internal fil
 
 | Path | Responsibility |
 |---|---|
-| `README.md` | Project vision, feature summary, architecture diagrams, current status, and roadmap. |
-| `DIRECTORY_STRUCTURE.md` | This directory and responsibility guide. |
-| `LICENSE` | The project's applicable usage and distribution terms. |
-| `CONTRIBUTING.md` | Contribution workflow, coding standards, review expectations, and test requirements. |
-| `SECURITY.md` | Security reporting instructions and disclosure policy. Do not publish secrets or exploit details in public issues. |
+| `ReadMe.md` | Project vision, feature summary, architecture diagrams, current status, and roadmap. |
+| `DirectoryStructure.md` | This directory and responsibility guide. |
+| `License` | The project's applicable usage and distribution terms. |
+| `Contributing.md` | Contribution workflow, coding standards, review expectations, and test requirements. |
+| `Security.md` | Security reporting instructions and disclosure policy. Do not publish secrets or exploit details in public issues. |
 | `.gitignore` | Excludes build outputs, local secrets, temporary files, and machine-specific configuration. |
 | `rust-toolchain.toml` | Pins or selects the Rust toolchain used by the project. |
 | `Cargo.toml` | Root Cargo workspace and shared workspace configuration. Include only members that exist. |

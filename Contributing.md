@@ -25,11 +25,11 @@ Do not add placeholder modules, empty abstractions, or speculative services mere
 
 ## 2. Before Starting
 
-1. Read `README.md` and `DIRECTORY_STRUCTURE.md`.
+1. Read `ReadMe.md` and `DirectoryStructure.md`.
 2. Review the relevant architecture and security documents under `docs/`, especially the threat model and trust-boundary documentation when available.
 3. Search existing issues and changes to avoid duplicating work.
 4. For a substantial feature or architectural change, open a discussion or issue before implementation.
-5. For a security vulnerability, **do not open a public issue**. Follow `SECURITY.md` and use the private reporting channel configured by the maintainers.
+5. For a security vulnerability, **do not open a public issue**. Follow `Security.md` and use the private reporting channel configured by the maintainers.
 
 Do not assume that every proposed directory or service already exists. Confirm the current workspace members and implementation status before relying on them.
 
@@ -65,6 +65,9 @@ Record lasting architectural decisions in `docs/decisions/` when that directory 
 The root `Cargo.toml` should list only workspace members that actually exist. Add members incrementally and keep `Cargo.lock` updated for application workspaces as appropriate.
 
 ## 5. Local Validation
+
+For the current static website, use the viewing instructions in [`github/pages/README.md`](github/pages/README.md). Check page navigation, language and theme selection, and read-only fictional repository browsing. There is no backend or Cargo workspace in this website-only delivery. The Cargo examples below apply only to a future authorized Rust implementation.
+
 
 Run the checks that apply to the workspace members you changed. From the repository root, the intended baseline checks are:
 
@@ -134,7 +137,7 @@ All contributions must preserve the principle of least privilege.
 - Example configuration must use clearly non-functional placeholder values.
 - If a secret is committed, treat it as exposed: notify maintainers privately and rotate or revoke it. Removing it from the latest commit alone may not remove it from Git history or other copies.
 
-See `SECURITY.md` for vulnerability reporting and incident-handling guidance.
+See `Security.md` for vulnerability reporting and incident-handling guidance.
 
 ## 7. Tests and Evidence
 
@@ -194,7 +197,7 @@ Do not merge your own changes into protected or production branches unless the r
 
 By submitting a contribution, you confirm that you have the right to submit it and that you are not knowingly including third-party material in violation of its applicable terms.
 
-Contributions are subject to the project's `LICENSE` and any additional written contribution terms published by the maintainers. Review those terms before submitting. A pull request does not, by itself, change the project's license or grant rights beyond those stated in the applicable terms.
+Contributions are subject to the project's `License` and any additional written contribution terms published by the maintainers. Review those terms before submitting. A pull request does not, by itself, change the project's license or grant rights beyond those stated in the applicable terms.
 
 If the licensing terms do not clearly explain how contributions are handled, ask the maintainers privately before submitting substantial work.
 
@@ -208,7 +211,7 @@ Harassment, deliberate disclosure of private information, malicious submissions,
 
 For ordinary contribution questions, use the repository's configured discussion or issue channels.
 
-For suspected vulnerabilities, exposed credentials, or other sensitive security matters, follow the private process in `SECURITY.md`. Do not publish exploit details or sensitive incident information in a public issue or pull request.
+For suspected vulnerabilities, exposed credentials, or other sensitive security matters, follow the private process in `Security.md`. Do not publish exploit details or sensitive incident information in a public issue or pull request.
 
 ---
 

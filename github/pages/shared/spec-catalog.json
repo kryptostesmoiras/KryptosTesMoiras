@@ -42,7 +42,7 @@
   },
   "topics": {
     "git": {
-      "status": "available",
+      "status": "planned",
       "source": "ReadMe.md",
       "anchor": "planned-features",
       "icon": "⌘"

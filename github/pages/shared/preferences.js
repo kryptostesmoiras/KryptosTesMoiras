@@ -1,17 +1,18 @@
 (() => {
   const localeBase = new URL('locales/', document.currentScript.src);
   const registry = window.KTM_LOCALE_REGISTRY;
-  const messages = { fr: window.KTM_FRENCH };
+  const defaultLanguage = window.KTM_DEFAULT_LANGUAGE;
+  const messages = { [defaultLanguage]: window.KTM_DEFAULT_MESSAGES };
   const themes = ['system', 'dark', 'light', 'plum', 'terminal'];
   const system = matchMedia('(prefers-color-scheme: light)');
-  let language = 'fr', theme = 'system', initialLanguage = 'fr', requestVersion = 0;
+  let language = defaultLanguage, theme = 'system', initialLanguage = defaultLanguage, requestVersion = 0;
   try {
-    initialLanguage = localStorage.getItem('ktm-language') || 'fr';
+    initialLanguage = localStorage.getItem('ktm-language') || defaultLanguage;
     theme = localStorage.getItem('ktm-theme') || 'system';
   } catch {}
-  if (!Object.hasOwn(registry, initialLanguage)) initialLanguage = 'fr';
+  if (!Object.hasOwn(registry, initialLanguage)) initialLanguage = defaultLanguage;
   if (!themes.includes(theme)) theme = 'system';
-  function t(key) { return messages[language][key] || messages.fr[key] || key; }
+  function t(key) { return messages[language][key] || messages[defaultLanguage][key] || key; }
   function apply() {
     document.documentElement.lang = language;
     document.documentElement.dir = registry[language].dir;
@@ -32,7 +33,7 @@
         const response = await fetch(new URL(next + '.json', localeBase), { credentials: 'same-origin' });
         if (!response.ok) throw Error('Locale unavailable');
         const candidate = await response.json();
-        const expected = Object.keys(messages.fr);
+        const expected = Object.keys(messages[defaultLanguage]);
         if (Object.keys(candidate).length !== expected.length || expected.some(key => typeof candidate[key] !== 'string' || !candidate[key].trim())) throw Error('Incomplete locale');
         messages[next] = candidate;
       }

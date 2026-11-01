@@ -125,7 +125,7 @@
   "errorFile": "Ongeldig bestand of commitbericht.",
   "sessionExpired": "Je sessie is verlopen. Meld je opnieuw aan.",
   "spec_git_title": "Private repositories, echte geschiedenis",
-  "spec_git_text": "Het prototype ondersteunt accounts, private repositories, tekstbestanden en commits op main. Alleen de aangemelde eigenaar kan de broncode op de Tor-zijde bekijken.",
+  "spec_git_text": "Het geplande platform biedt private repositories en geschiedenis. Deze website bevat alleen een fictieve alleen-lezen demo; accounts en acties horen bij de afzonderlijke private dienst van de eigenaar.",
   "spec_teams_title": "Samenwerking en Git-workflow",
   "spec_teams_text": "Branches, tags, verschillen, issues, pull requests, releases, organisaties, rollen, SSH- en ondertekeningssleutels horen bij het project. Samenwerking en native Git-transporten moeten nog worden gebouwd.",
   "spec_hosting_title": "Jouw taal, jouw omgeving",

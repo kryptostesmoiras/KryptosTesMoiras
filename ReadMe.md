@@ -1,7 +1,7 @@
 # Private and Secure Git Platform
 
 > **Status:** Initial design — architecture and technical choices remain subject to validation.  
-> **Primary language:** Rust  
+> **Platform backend language:** Rust; hosted projects may use any language\
 > **Web UI candidate:** Leptos  
 > **Initial deployment target:** One machine with 64 GB RAM  
 > **Planned private access:** Tor onion service  
@@ -10,6 +10,22 @@
 This project aims to build a private source-code hosting platform inspired by modern Git platforms. It prioritizes security boundaries, efficient resource use, maintainability, transparent administration, and reliable recovery. Rust is the default implementation language wherever practical.
 
 **This repository describes a proposed design. It does not imply that every listed component has been implemented or security-reviewed.** Components and directories should be added incrementally as requirements become clear; avoid empty placeholders and premature service fragmentation.
+
+## Website-only scope of this checkout
+
+The public static website is in [`github/pages/`](github/pages/README.md). English is its default language, with twenty selectable translations. The site contains HTML, CSS, JavaScript and local translation files only. It includes a fictional, read-only repository demonstration.
+
+No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
+
+The public `.io` site is intended to link to the owner-configured onion service; actual accounts remain exclusively on Tor. The owner will supply that address locally. This static website does not implement accounts or proxy Tor traffic.
+
+To view the site from the repository root:
+
+```sh
+python3 -m http.server 8080 --directory github/pages
+```
+
+See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
 
 ## Contents
 
@@ -36,7 +52,8 @@ This project aims to build a private source-code hosting platform inspired by mo
 
 The platform is intended to bring together:
 
-- Private Git repository hosting and browsing.
+- Private Git repository hosting and browsing, regardless of the language stored in the repository.
+- Separately designed static-site hosting, builds and isolated application runtimes; storing a language does not imply being able to execute it.
 - Commit, branch, tag, diff, issue, pull-request, and release management.
 - Account, organization, permission, SSH-key, signing-key, and session management.
 - A dynamic web interface and a separate restricted administration interface.
@@ -168,6 +185,8 @@ Interfaces between components should define:
 
 ### Security AI
 
+The AI must not directly access the source code of hosted repositories. A separate analysis component may generate hashes and filtered artifacts derived from a Concrete Syntax Tree (CST). A raw CST can contain source tokens and must not be sent unchanged. Hashes identify content; they do not let a model understand unseen code. The artifact schema and filtering controls remain to be designed and verified. No AI component is connected to the static site.
+
 The AI may analyze authorized events concerning:
 
 - Git operations and permission changes;
@@ -276,10 +295,10 @@ The following is a proposed starting layout, not a requirement to create every d
 ```text
 KryptosTesMoiras/
 ├── ReadMe.md
-├── DIRECTORY_STRUCTURE.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── SECURITY.md
+├── DirectoryStructure.md
+├── License
+├── Contributing.md
+├── Security.md
 ├── .gitignore
 ├── rust-toolchain.toml
 ├── Cargo.toml
@@ -509,7 +528,7 @@ Passing these criteria does not prove absolute security. It establishes a baseli
 
 ## Contributing and security reports
 
-Contribution rules and the security-reporting process should be documented in `CONTRIBUTING.md` and `SECURITY.md` before accepting external contributions or deploying the platform. Do not include secrets, live onion-service credentials, private keys, or sensitive incident evidence in public issues or commits.
+Contribution rules and the security-reporting process should be documented in `Contributing.md` and `Security.md` before accepting external contributions or deploying the platform. Do not include secrets, live onion-service credentials, private keys, or sensitive incident evidence in public issues or commits.
 
 Until the implementation and security review are complete, treat this project as an evolving design and development effort—not as a production-ready secure hosting service.
 

@@ -125,7 +125,7 @@
   "errorFile": "Ugyldig fil eller commit-besked.",
   "sessionExpired": "Sessionen er udløbet. Log ind igen.",
   "spec_git_title": "Private arkiver, ægte historik",
-  "spec_git_text": "Prototypen understøtter konti, private arkiver, tekstfiler og commits på main. Kun den godkendte ejer kan læse kilderne på Tor-siden.",
+  "spec_git_text": "Den planlagte platform tilbyder private arkiver og historik. Denne side indeholder kun en fiktiv skrivebeskyttet demo; konti og handlinger hører til ejerens separate private tjeneste.",
   "spec_teams_title": "Samarbejde og Git-forløb",
   "spec_teams_text": "Grene, tags, forskelle, issues, pull requests, udgivelser, organisationer, roller, SSH- og signeringsnøgler indgår i projektet. Samarbejde og indbygget Git-transport skal stadig udvikles.",
   "spec_hosting_title": "Dit sprog, dit miljø",

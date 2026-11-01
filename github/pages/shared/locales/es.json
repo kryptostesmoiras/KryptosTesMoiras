@@ -125,7 +125,7 @@
   "errorFile": "Archivo o mensaje del commit no válido.",
   "sessionExpired": "La sesión ha caducado. Vuelve a iniciar sesión.",
   "spec_git_title": "Repositorios privados, historial real",
-  "spec_git_text": "El prototipo permite crear cuentas, repositorios privados, archivos de texto y commits en main. Solo el propietario autenticado accede a las fuentes, en el lado Tor.",
+  "spec_git_text": "La plataforma prevista ofrece repositorios privados e historial. Este sitio solo contiene una demo ficticia de lectura; las cuentas y operaciones pertenecen al servicio privado separado del propietario.",
   "spec_teams_title": "Colaboración y ciclo Git",
   "spec_teams_text": "Ramas, etiquetas, diferencias, incidencias, pull requests, versiones, organizaciones, roles, claves SSH y de firma forman parte del proyecto. La colaboración y los transportes Git nativos están pendientes.",
   "spec_hosting_title": "Tu lenguaje, tu entorno",

@@ -125,7 +125,7 @@
   "errorFile": "Le fichier ou le message de commit est invalide.",
   "sessionExpired": "Votre session a expiré. Reconnectez-vous.",
   "spec_git_title": "Dépôts privés, historique réel",
-  "spec_git_text": "Le prototype permet de créer un compte, un dépôt privé, des fichiers texte et des commits sur main. Les sources ne sont accessibles qu’au propriétaire authentifié, côté Tor.",
+  "spec_git_text": "La plateforme prévue fournit des dépôts privés et leur historique. Ce site contient uniquement une démonstration fictive en lecture seule ; les comptes et opérations appartiennent au service privé distinct du propriétaire.",
   "spec_teams_title": "Collaboration et cycle Git",
   "spec_teams_text": "Branches, tags, différences, tickets, pull requests, versions, organisations, rôles, clés SSH et clés de signature font partie du projet. La collaboration et les transports Git natifs restent à développer.",
   "spec_hosting_title": "Votre langage, votre environnement",

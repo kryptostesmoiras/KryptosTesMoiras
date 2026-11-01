@@ -125,7 +125,7 @@
   "errorFile": "File o messaggio di commit non valido.",
   "sessionExpired": "La sessione è scaduta. Accedi di nuovo.",
   "spec_git_title": "Repository privati, cronologia reale",
-  "spec_git_text": "Il prototipo permette account, repository privati, file di testo e commit su main. Solo il proprietario autenticato accede ai sorgenti, sul lato Tor.",
+  "spec_git_text": "La piattaforma prevista offre repository privati e cronologia. Questo sito contiene solo una demo fittizia in lettura; account e operazioni appartengono al servizio privato separato del proprietario.",
   "spec_teams_title": "Collaborazione e ciclo Git",
   "spec_teams_text": "Branch, tag, differenze, issue, pull request, versioni, organizzazioni, ruoli, chiavi SSH e di firma fanno parte del progetto. Collaborazione e trasporti Git nativi restano da sviluppare.",
   "spec_hosting_title": "Il tuo linguaggio, il tuo ambiente",

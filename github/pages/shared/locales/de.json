@@ -125,7 +125,7 @@
   "errorFile": "Datei oder Commit-Nachricht ungültig.",
   "sessionExpired": "Sitzung abgelaufen. Bitte erneut anmelden.",
   "spec_git_title": "Private Repositories, echter Verlauf",
-  "spec_git_text": "Der Prototyp unterstützt Konten, private Repositories, Textdateien und Commits auf main. Nur der angemeldete Eigentümer erhält auf der Tor-Seite Zugriff auf die Quellen.",
+  "spec_git_text": "Die geplante Plattform bietet private Repositories und Verlauf. Diese Website enthält nur eine fiktive, schreibgeschützte Demo; Konten und Repository-Aktionen gehören zum separaten privaten Dienst des Eigentümers.",
   "spec_teams_title": "Zusammenarbeit und Git-Ablauf",
   "spec_teams_text": "Branches, Tags, Diffs, Issues, Pull Requests, Releases, Organisationen, Rollen sowie SSH- und Signaturschlüssel gehören zum Projekt. Zusammenarbeit und native Git-Protokolle müssen noch umgesetzt werden.",
   "spec_hosting_title": "Deine Sprache, deine Umgebung",

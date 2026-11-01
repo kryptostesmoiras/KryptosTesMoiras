@@ -125,7 +125,7 @@
   "errorFile": "Dosya veya commit mesajı geçersiz.",
   "sessionExpired": "Oturumun süresi doldu. Tekrar giriş yapın.",
   "spec_git_title": "Özel depolar, gerçek geçmiş",
-  "spec_git_text": "Prototip hesapları, özel depoları, metin dosyalarını ve main üzerinde commitleri destekler. Kaynaklara Tor tarafında yalnızca kimliği doğrulanmış sahip erişir.",
+  "spec_git_text": "Planlanan platform özel depolar ve geçmiş sağlar. Bu site yalnızca kurgusal, salt okunur bir demo içerir; hesaplar ve işlemler sahibinin ayrı özel hizmetine aittir.",
   "spec_teams_title": "İş birliği ve Git döngüsü",
   "spec_teams_text": "Dallar, etiketler, farklar, sorunlar, pull requestler, sürümler, kuruluşlar, roller, SSH ve imza anahtarları proje kapsamındadır. İş birliği ve yerel Git aktarımı henüz uygulanmadı.",
   "spec_hosting_title": "Diliniz ve ortamınız",
