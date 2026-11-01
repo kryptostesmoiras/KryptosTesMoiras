@@ -54,6 +54,6 @@ The root website retains the horizontal banner, Git-style navigation, repository
 
 ## Project Pages precedence
 
-The project repository already has a separate GitHub Pages site at `/KryptosTesMoiras/`. Its `.github/workflows/project-documentation.yml` workflow builds `npm run build:docs` and publishes `dist-project-docs/` through the Pages artifact actions. It switches that existing project site to workflow publication so a legacy branch/Jekyll build cannot overwrite the reader. All JS, CSS, document data and the favicon are included inside this artifact; it does not depend on root website assets.
+The project repository already has a separate GitHub Pages site at `/KryptosTesMoiras/`. Its `.github/workflows/project-documentation.yml` workflow builds `npm run build:docs` and publishes `dist-project-docs/` through the existing project Pages branch and directory. It preserves Markdown sources and owner-managed files, writes only the generated web artifacts, and explicitly requests the Pages build. No Pages setting change is required. All JS, CSS, document data and the favicon are included inside this artifact; it does not depend on root website assets.
 
 The hosting repository continues publishing the root website. Its generated project subfolder is a fallback copy, not the authoritative deployment while the project Pages site is enabled. Local `npm run build` still produces both paths for combined preview.

@@ -14,9 +14,8 @@ on:
     - cron: '2-57/15 * * * *'
 
 permissions:
-  contents: read
+  contents: write
   pages: write
-  id-token: write
   discussions: read
 
 concurrency:
@@ -27,26 +26,43 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out project source
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - name: Use workflow publication for the project Pages site
+      - name: Read the existing project Pages source
+        id: pages
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          printf '%s\n' '{"build_type":"workflow"}' > "$RUNNER_TEMP/pages-source.json"
-          gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" --input "$RUNNER_TEMP/pages-source.json" --silent
+          gh api "repos/$GITHUB_REPOSITORY/pages" > "$RUNNER_TEMP/project-pages.json"
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ['RUNNER_TEMP'] + '/project-pages.json') as stream:
+              pages = json.load(stream)
+          source = pages.get('source') or {}
+          if pages.get('build_type') == 'workflow' or not source.get('branch') or source.get('path') not in ['/', '/docs']:
+              raise SystemExit('Expected the existing branch-based project Pages source.')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('branch=' + source['branch'] + '\n')
+              output.write('path=' + source['path'] + '\n')
+          print('Using the existing Pages branch and directory:', source['branch'], source['path'])
+          PY
+
+      - name: Check out the existing Pages branch separately
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pages.outputs.branch }}
+          path: _project-pages
+          persist-credentials: false
 
       - name: Read public Discussions metadata
         env:
           GH_TOKEN: ${{ github.token }}
+          PAGES_PATH: ${{ steps.pages.outputs.path }}
         run: |
           set -euo pipefail
           gh api repos/kryptostesmoiras/kryptostesmoiras.github.io > "$RUNNER_TEMP/discussions-repository.json"
@@ -65,11 +81,19 @@ jobs:
               data = json.loads((Path(os.environ['RUNNER_TEMP']) / 'discussions.json').read_text())
               items = [{'title': row['title'], 'url': row['url'], 'comments': row['comments']['totalCount']}
                        for row in data['data']['repository']['discussions']['nodes']]
+          payload = {'enabled': enabled,
+              'url': 'https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/discussions',
+              'items': items}
+          previous_path = Path('_project-pages') / os.environ['PAGES_PATH'].lstrip('/') / 'discussions.json'
+          try:
+              previous = json.loads(previous_path.read_text())
+          except (OSError, ValueError):
+              previous = {}
+          checked = previous.pop('checkedAt', None)
+          payload['checkedAt'] = checked if previous == payload and checked else datetime.now(timezone.utc).isoformat()
           target = Path('github/pages/public/KryptosTesMoiras/discussions.json')
           target.parent.mkdir(parents=True, exist_ok=True)
-          target.write_text(json.dumps({'enabled': enabled,
-              'url': 'https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/discussions',
-              'items': items, 'checkedAt': datetime.now(timezone.utc).isoformat()}))
+          target.write_text(json.dumps(payload))
           PY
 
       - name: Set up Node.js
@@ -87,14 +111,69 @@ jobs:
         working-directory: github/pages
         run: npm run build:docs
 
-      - name: Configure project Pages
-        uses: actions/configure-pages@v5
+      - name: Publish generated documentation without replacing source files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_PATH: ${{ steps.pages.outputs.path }}
+          PAGES_BRANCH: ${{ steps.pages.outputs.branch }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, shutil, subprocess
+          source = Path('github/pages/dist-project-docs')
+          target = Path('_project-pages') / os.environ['PAGES_PATH'].lstrip('/')
+          target.mkdir(parents=True, exist_ok=True)
+          manifest = target / 'project-pages-assets.json'
+          try:
+              old_files = json.loads(manifest.read_text()).get('files', [])
+          except (OSError, ValueError):
+              old_files = []
+          files = [p.relative_to(source).as_posix() for p in source.rglob('*') if p.is_file()]
+          for name in set(old_files) - set(files):
+              old = target / name
+              if old.resolve().is_relative_to(target.resolve()) and old.is_file():
+                  old.unlink()
+          for name in files:
+              destination = target / name
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source / name, destination)
+          (target / '.nojekyll').touch()
+          manifest.write_text(json.dumps({'files': files}, indent=2) + '\n')
+          prefix = os.environ['PAGES_PATH'].lstrip('/')
+          managed = [str(Path(prefix) / name) for name in set(old_files + files + ['.nojekyll', 'project-pages-assets.json'])]
+          subprocess.run(['git', '-C', '_project-pages', 'add', '--all', '--', *managed], check=True)
+          PY
+          git -C _project-pages config user.name 'github-actions[bot]'
+          git -C _project-pages config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git -C _project-pages diff --cached --quiet; then
+            git -C _project-pages commit -m 'Publish project Markdown and license reader'
+            git -C _project-pages -c credential.helper= -c credential.helper='!gh auth git-credential' push origin "HEAD:$PAGES_BRANCH"
+          fi
 
-      - name: Upload standalone documentation
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: github/pages/dist-project-docs
-
-      - name: Deploy project documentation
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Request and verify project Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          expected=$(git -C _project-pages rev-parse HEAD)
+          requested=false
+          for attempt in $(seq 1 30); do
+            gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > "$RUNNER_TEMP/latest-project-build.json"
+            read -r commit status < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p.get("commit", "unknown"), p.get("status", "unknown"))' "$RUNNER_TEMP/latest-project-build.json")
+            if [[ "$commit" == "$expected" && "$status" == 'built' ]]; then
+              echo "Project Pages published $expected"
+              exit 0
+            fi
+            if [[ "$commit" == "$expected" && "$status" == 'errored' && "$requested" == true ]]; then
+              echo 'GitHub Pages reported a project build failure.' >&2
+              exit 1
+            fi
+            if [[ "$status" != 'queued' && "$status" != 'building' && "$requested" == false ]]; then
+              gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds" --silent
+              requested=true
+            fi
+            sleep 15
+          done
+          echo 'Project Pages did not confirm the expected build before timeout.' >&2
+          exit 1
