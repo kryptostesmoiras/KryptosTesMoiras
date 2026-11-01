@@ -13,7 +13,7 @@ Project documentation and the default website content are in English. Other webs
 | [Financial model](FinancialModel.md) | Funding, domains, accounting and treasury principles |
 | [Royalties](Royalties.md) | Agreements, calculations, statements and payments |
 | [License](../License) | Existing proprietary license; not rewritten by this cleanup |
-| [Static website](../github/pages/README.md) | How to view the HTML locally |
+| [Static website](../ReadMe.md#website-only-scope-of-this-checkout) | Website scope and local preview instructions |
 | [Website specification coverage](architecture/site-specifications.md) | How product pages map to the Markdown requirements |
 | [Project review](ProjectReview.md) | Remaining design decisions and current limits |
 

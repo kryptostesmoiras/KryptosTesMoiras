@@ -13,7 +13,7 @@ This project aims to build a private source-code hosting platform inspired by mo
 
 ## Website-only scope of this checkout
 
-The public static website is in [`github/pages/`](github/pages/README.md). English is its default language, with twenty selectable translations. The site contains HTML, CSS, JavaScript and local translation files only. It includes a fictional, read-only repository demonstration.
+The public static website is in [`github/pages/`](github/pages/). English is its default language, with twenty selectable translations. The site contains HTML, CSS, JavaScript and local translation files only. It includes a fictional, read-only repository demonstration.
 
 No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
 
