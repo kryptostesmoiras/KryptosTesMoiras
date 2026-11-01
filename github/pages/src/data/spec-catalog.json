@@ -1,0 +1,153 @@
+{
+  "pages": {
+    "platform": {
+      "title": "navPlatform",
+      "topics": [
+        "git",
+        "teams",
+        "hosting",
+        "copilot",
+        "providers"
+      ]
+    },
+    "security": {
+      "title": "navSecurity",
+      "topics": [
+        "sourceBoundary",
+        "training",
+        "sentinel",
+        "approval",
+        "recovery",
+        "resources"
+      ]
+    },
+    "economy": {
+      "title": "navEconomy",
+      "topics": [
+        "freeAccess",
+        "donations",
+        "domains",
+        "royalties",
+        "treasury"
+      ]
+    },
+    "project": {
+      "title": "navRoadmap",
+      "topics": [
+        "resources",
+        "extensions",
+        "rights"
+      ]
+    }
+  },
+  "topics": {
+    "git": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "planned-features",
+      "icon": "⌘"
+    },
+    "teams": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "planned-features",
+      "icon": "⑂"
+    },
+    "hosting": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "technology-choices",
+      "icon": "⊞"
+    },
+    "copilot": {
+      "status": "planned",
+      "source": "License",
+      "anchor": "",
+      "icon": "◇"
+    },
+    "sourceBoundary": {
+      "status": "planned",
+      "source": "Security.md",
+      "anchor": "631-hosted-repository-source-boundary-and-cst-artifacts",
+      "icon": "◇"
+    },
+    "training": {
+      "status": "planned",
+      "source": "Security.md",
+      "anchor": "61-no-training-on-user-projects-by-default",
+      "icon": "◎"
+    },
+    "providers": {
+      "status": "planned",
+      "source": "docs/FinancialModel.md",
+      "anchor": "7-ai-access-and-external-providers",
+      "icon": "⇄"
+    },
+    "sentinel": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "sentinel--watchdog",
+      "icon": "◈"
+    },
+    "approval": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "phone-based-authorization",
+      "icon": "✓"
+    },
+    "recovery": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "containment-and-recovery",
+      "icon": "↺"
+    },
+    "resources": {
+      "status": "planned",
+      "source": "ReadMe.md",
+      "anchor": "resource-planning",
+      "icon": "▥"
+    },
+    "freeAccess": {
+      "status": "planned",
+      "source": "docs/FinancialModel.md",
+      "anchor": "24-other-services",
+      "icon": "∞"
+    },
+    "donations": {
+      "status": "planned",
+      "source": "docs/FinancialModel.md",
+      "anchor": "21-voluntary-donations",
+      "icon": "♡"
+    },
+    "domains": {
+      "status": "planned",
+      "source": "docs/FinancialModel.md",
+      "anchor": "23-domain-registration-and-management",
+      "icon": "⊙"
+    },
+    "royalties": {
+      "status": "planned",
+      "source": "docs/Royalties.md",
+      "anchor": "3-agreement-required",
+      "icon": "%"
+    },
+    "treasury": {
+      "status": "planned",
+      "source": "docs/FinancialModel.md",
+      "anchor": "4-treasury-and-restricted-funds",
+      "icon": "▤"
+    },
+    "extensions": {
+      "status": "undecided",
+      "source": "ReadMe.md",
+      "anchor": "open-decisions",
+      "icon": "⊕"
+    },
+    "rights": {
+      "status": "available",
+      "source": "License",
+      "anchor": "",
+      "icon": "§"
+    }
+  }
+}

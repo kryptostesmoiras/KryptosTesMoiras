@@ -22,6 +22,6 @@ Project documentation and the default website content are in English. Other webs
 
 This checkout contains documents and a React/TypeScript frontend in `github/pages/`. The authorized frontend source is included; no backend, database, account service, Rust workspace, `apps/` tree or server implementation is included. The owner's existing local `app/` is separate and has not been accessed or replaced.
 
-The GitHub Pages site contains only the Markdown reader and access to public GitHub Discussions. Document search runs locally on the public document collection. The future platform search and anonymous desktop/onion accounts are separate services. Only language/theme preferences are persisted in the browser.
+The root `kryptostesmoiras.github.io/` serves the website. The `/KryptosTesMoiras/` subsite contains the Markdown reader, license and public GitHub Discussions. Document search runs locally on the public document collection. The future platform search and anonymous desktop/onion accounts are separate services. Only language/theme preferences are persisted in the browser.
 
 Git hosting may store any programming language. Rust refers to the proposed platform backend, not a restriction on users' projects. Building code, running applications, AI analysis, Sentinel, payments and recovery controls remain separate implementation work.

@@ -13,13 +13,18 @@ This project aims to build a private source-code hosting platform inspired by mo
 
 ## Public web interface
 
-The React/TypeScript document reader is in [`github/pages/`](github/pages/). The [`kryptostesmoiras.github.io`](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io) repository publishes only this documentation reader and the public GitHub Discussions space. It does not publish the planned source-search portal, private accounts or a desktop application.
+The React/TypeScript source in [`github/pages/`](github/pages/) builds two separate destinations:
 
-The reader indexes all tracked Markdown documents in this repository, preserves their English source content, resolves links between them, and provides full-text document search and an outline. Navigation has twenty selectable UI languages and four themes plus system mode. Discussions use the hosting repository's native GitHub feature; participating there uses a GitHub account, separate from the platform's planned anonymous accounts.
+| URL | Purpose |
+| --- | --- |
+| [kryptostesmoiras.github.io/](https://kryptostesmoiras.github.io/) | Public website, horizontal banner, project search interface and planned desktop app information. |
+| [kryptostesmoiras.github.io/KryptosTesMoiras/](https://kryptostesmoiras.github.io/KryptosTesMoiras/) | Project Markdown reader, license and public discussions. |
 
-The frontend source is included. No backend, private account service, database, Rust implementation or desktop runtime is included. The owner's existing local `app/` is separate.
+The root website does not display invented projects or simulate a connected search index. The project subsite collects all tracked Markdown and the existing `License`, with local document search, internal links and outlines. Native public GitHub Discussions are separate from the platform's planned anonymous accounts.
 
-From the repository root, using Node.js 22.12+ or 24 LTS:
+Both interfaces retain twenty selectable UI languages and four themes plus system mode. The source documents remain in their original English. No backend, private account service, database, Rust implementation or desktop runtime is included; the owner's local `app/` is separate.
+
+From the repository root, with Node.js 22.12+ or 24 LTS:
 
 ```sh
 cd github/pages
@@ -27,7 +32,7 @@ npm ci
 npm run dev
 ```
 
-Open the URL printed by Vite. `npm run build` collects tracked Markdown, checks TypeScript and builds the static reader into `github/pages/dist/`. `npm run preview` serves that build. The hosting workflow retrieves this source and the Markdown files, checks for changes every five minutes and publishes generated output. See the [publication procedure](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/blob/main/docs/publishing.md).
+Open `/` for the website and `/KryptosTesMoiras/` for documentation. `npm run build` checks TypeScript, collects documents and builds both TSX entries into `github/pages/dist/`. `npm run preview` serves that result. The hosting workflow retrieves this source, checks for changes every five minutes and publishes both destinations together. See the [publication procedure](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/blob/main/docs/publishing.md).
 
 See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
 

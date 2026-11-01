@@ -1,5 +1,5 @@
 node_modules/
 dist/
 *.tsbuildinfo
-public/documents.json
-public/discussions.json
+public/KryptosTesMoiras/documents.json
+public/KryptosTesMoiras/discussions.json
