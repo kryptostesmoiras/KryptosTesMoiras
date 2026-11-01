@@ -16,6 +16,7 @@ on:
 permissions:
   contents: write
   pages: write
+  actions: read
   discussions: read
 
 concurrency:
@@ -151,32 +152,6 @@ jobs:
             git -C _project-pages -c credential.helper= -c credential.helper='!gh auth git-credential' push origin "HEAD:$PAGES_BRANCH"
           fi
 
-      - name: Cancel superseded Pages deployments
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          expected=$(git -C _project-pages rev-parse HEAD)
-          current_state=$(gh api "repos/$GITHUB_REPOSITORY/pages/deployments/$expected" --jq '.status' 2>/dev/null || true)
-          if [[ "$current_state" == 'deployment_succeeded' ]]; then
-            exit 0
-          fi
-          # A canceled workflow can leave an older Pages deployment active.
-          # It may be older than the most recent ten branch builds.
-          gh api "repos/$GITHUB_REPOSITORY/pages/builds?per_page=100" --jq '.[].commit' | sort -u > "$RUNNER_TEMP/previous-pages-commits.txt"
-          while IFS= read -r previous; do
-            if [[ "$previous" == "$expected" || ! "$previous" =~ ^[0-9a-f]{40}$ ]]; then
-              continue
-            fi
-            if gh api "repos/$GITHUB_REPOSITORY/pages/deployments/$previous" --jq '.status' > "$RUNNER_TEMP/previous-pages-status.txt" 2>/dev/null; then
-              state=$(cat "$RUNNER_TEMP/previous-pages-status.txt")
-              if [[ "$state" == 'deployment_in_progress' || "$state" == 'deployment_queued' || "$state" == 'deployment_pending' ]]; then
-                echo "Canceling superseded Pages deployment $previous"
-                gh api --method POST "repos/$GITHUB_REPOSITORY/pages/deployments/$previous/cancel" --silent
-              fi
-            fi
-          done < "$RUNNER_TEMP/previous-pages-commits.txt"
-
       - name: Request and verify project Pages build
         env:
           GH_TOKEN: ${{ github.token }}
@@ -186,22 +161,35 @@ jobs:
           requests=0
           last_request=-3
           for attempt in $(seq 1 40); do
-            gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > "$RUNNER_TEMP/latest-project-build.json"
-            read -r commit status < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p.get("commit", "unknown"), p.get("status", "unknown"))' "$RUNNER_TEMP/latest-project-build.json")
-            deployment_state=$(gh api "repos/$GITHUB_REPOSITORY/pages/deployments/$expected" --jq '.status' 2>/dev/null || true)
-            if [[ "$deployment_state" == 'deployment_succeeded' ]]; then
-              echo "Project Pages published $expected"
+            gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > "$RUNNER_TEMP/pages-build.json"
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$expected&per_page=50" > "$RUNNER_TEMP/pages-runs.json"
+            read -r commit build_state native_state < <(python3 - "$RUNNER_TEMP/pages-build.json" "$RUNNER_TEMP/pages-runs.json" "$expected" <<'PYSTATUS'
+          import json, sys
+          build = json.load(open(sys.argv[1]))
+          runs = json.load(open(sys.argv[2])).get('workflow_runs', [])
+          native = [run for run in runs if run.get('head_sha') == sys.argv[3]
+                    and ('pages-build-deployment' in run.get('path', '')
+                         or run.get('name') == 'pages build and deployment')]
+          if any(run.get('conclusion') == 'success' for run in native):
+              state = 'success'
+          elif any(run.get('status') in ['queued', 'in_progress', 'waiting', 'pending'] for run in native):
+              state = 'in_progress'
+          else:
+              state = 'missing_or_failed'
+          print(build.get('commit', 'unknown'), build.get('status', 'unknown'), state)
+          PYSTATUS
+            )
+            if [[ "$commit" == "$expected" && "$build_state" == 'built' && "$native_state" == 'success' ]]; then
+              echo "Confirmed actual project Pages deployment for $expected"
               exit 0
             fi
-            if [[ "$deployment_state" == 'deployment_in_progress' || "$deployment_state" == 'deployment_queued' || "$deployment_state" == 'deployment_pending' ]]; then
+            if [[ "$native_state" == 'in_progress' || "$build_state" == 'queued' || "$build_state" == 'building' ]]; then
               sleep 15
               continue
             fi
-            # Pages may reject a deployment while its predecessor is still
-            # being released. Retry failed branch builds with a one-minute gap.
-            if [[ "$status" != 'queued' && "$status" != 'building' && $((attempt - last_request)) -ge 4 ]]; then
+            if [[ $((attempt - last_request)) -ge 4 ]]; then
               if [[ "$requests" -ge 4 ]]; then
-                echo 'Pages did not publish after four spaced build requests.' >&2
+                echo 'Pages did not confirm publication after four spaced build requests.' >&2
                 exit 1
               fi
               gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds" --silent
@@ -210,5 +198,5 @@ jobs:
             fi
             sleep 15
           done
-          echo 'Project Pages did not confirm the expected build before timeout.' >&2
+          echo 'No successful Pages deployment was confirmed for the expected commit before timeout.' >&2
           exit 1
