@@ -66,7 +66,7 @@ The root `Cargo.toml` should list only workspace members that actually exist. Ad
 
 ## 5. Local Validation
 
-For the current static website, use the viewing instructions in [the repository README](ReadMe.md#website-only-scope-of-this-checkout). Check page navigation, language and theme selection, and read-only fictional repository browsing. There is no backend or Cargo workspace in this website-only delivery. The Cargo examples below apply only to a future authorized Rust implementation.
+For the current static website, use the viewing instructions in [the repository README](ReadMe.md#website-only-scope-of-this-checkout). Check page navigation, language and theme selection, and the empty interface preview. There is no backend or Cargo workspace in this website-only delivery. The Cargo examples below apply only to a future authorized Rust implementation.
 
 
 Run the checks that apply to the workspace members you changed. From the repository root, the intended baseline checks are:

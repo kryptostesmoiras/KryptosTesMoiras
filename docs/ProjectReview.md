@@ -4,7 +4,7 @@ Scope: project documents and the public static website. This is a documentation 
 
 ## Current scope
 
-The deliverable contains English documentation and the public HTML website under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. Its repository browser displays fictional examples only.
+The deliverable contains English documentation and the public HTML website under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. Its interface preview contains no accounts, repository data or sample projects.
 
 The assistant-created Rust server, SQLite data, private account UI, `apps/`, backend manifests, build outputs and backend-specific tools have been removed. They were outside the requested website/documentation scope. Their earlier test results must not be represented as capabilities of this website or of the owner's local application.
 

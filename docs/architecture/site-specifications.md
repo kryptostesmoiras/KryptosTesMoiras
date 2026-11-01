@@ -1,12 +1,12 @@
 # Website specification coverage
 
-The static public site is in `github/pages/`. English is its default and fallback language. It is a presentation and read-only fictional demo, not an account service or backend implementation.
+The static public site is in `github/pages/`. English is its default and fallback language. It presents the project and an empty interface preview, with no accounts, repository data or sample projects.
 
 ## Document-to-page mapping
 
 | Topic | Reference | Website |
 |---|---|---|
-| Private repositories and history | [Presentation](../../ReadMe.md#planned-features) | `platform.html#git` — planned private service; fictional demo only |
+| Private repositories and history | [Presentation](../../ReadMe.md#planned-features) | `platform.html#git` — planned private service; no repository data in the public preview |
 | Branches, tags, diffs, issues, pull requests and releases | [Presentation](../../ReadMe.md#planned-features) | `platform.html#teams` |
 | Organizations, roles, SSH keys and signatures | [Presentation](../../ReadMe.md#project-goals), [contribution rules](../../Contributing.md) | `platform.html#teams` |
 | Any repository language; separate builds and application runtimes | [Presentation](../../ReadMe.md#technology-choices), [structure](../../DirectoryStructure.md) | `platform.html#hosting` |
