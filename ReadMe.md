@@ -1,3 +1,5 @@
+![Kryptos Tēs Moiras — project logo with the Rust gear emblem](github/pages/src/assets/branding/detailed-rust.png)
+
 # Private and Secure Git Platform
 
 > **Status:** Initial design — architecture and technical choices remain subject to validation.  
