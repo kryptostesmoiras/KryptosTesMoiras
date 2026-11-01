@@ -13,13 +13,13 @@ This project aims to build a private source-code hosting platform inspired by mo
 
 ## Public web interface
 
-The public web interface is in [`github/pages/`](github/pages/), built with React, TypeScript (TSX) and Vite. English is the default, with twenty selectable languages and four themes plus system mode. The interface has a horizontal project banner, sidebar navigation, repository/website tabs and a search preview without sample projects or a connected index.
+The React/TypeScript document reader is in [`github/pages/`](github/pages/). The [`kryptostesmoiras.github.io`](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io) repository publishes only this documentation reader and the public GitHub Discussions space. It does not publish the planned source-search portal, private accounts or a desktop application.
 
-The frontend source is included. No backend, authentication service, database, Rust implementation or application execution environment is included. The owner's existing local `app/` is separate and has not been imported, renamed or replaced. Future-layout diagrams below are proposals, not instructions to create an `apps/` directory in that existing application.
+The reader indexes all tracked Markdown documents in this repository, preserves their English source content, resolves links between them, and provides full-text document search and an outline. Navigation has twenty selectable UI languages and four themes plus system mode. Discussions use the hosting repository's native GitHub feature; participating there uses a GitHub account, separate from the platform's planned anonymous accounts.
 
-The public `.io` site is intended to provide search over projects explicitly made public by their owners, with limited guest access. A planned desktop application manages connections between users and the onion server. Anonymous accounts belong to that private service. The current website contains only the search interface; no index, account service, desktop download or connection manager is supplied.
+The frontend source is included. No backend, private account service, database, Rust implementation or desktop runtime is included. The owner's existing local `app/` is separate.
 
-To run the web interface from the repository root (Node.js 22.12+ or 24 LTS):
+From the repository root, using Node.js 22.12+ or 24 LTS:
 
 ```sh
 cd github/pages
@@ -27,7 +27,7 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. `npm run build` checks TypeScript and builds the static deployment into `github/pages/dist/`; `npm run preview` serves that build. Deploy the contents of `dist/`, not the TSX source folder. The single `index.html` is the browser bootstrap; page layouts and interactions are React components.
+Open the URL printed by Vite. `npm run build` collects tracked Markdown, checks TypeScript and builds the static reader into `github/pages/dist/`. `npm run preview` serves that build. The hosting workflow retrieves this source and the Markdown files, checks for changes every five minutes and publishes generated output. See the [publication procedure](https://github.com/kryptostesmoiras/kryptostesmoiras.github.io/blob/main/docs/publishing.md).
 
 See the [documentation index](docs/README.md), [project review](docs/ProjectReview.md) and [website coverage](docs/architecture/site-specifications.md).
 
@@ -48,7 +48,7 @@ These requirements supersede the former public-site flow asking visitors to open
 - **Anonymous accounts:** anonymity is a required property to design and validate, not an implemented guarantee. Registration must not require a real name, email address or telephone number. Authentication, secret recovery, logging, connection metadata and cross-service correlation require a documented threat model. An account may authenticate without disclosing a civil identity; the credential scheme is not yet selected.
 - **Network boundary:** an ordinary connection to the public `.io` site can expose network metadata to its serving infrastructure. Account anonymity must therefore cover transport and operational logging as well as profile fields. Guest limiting must not silently introduce persistent identity tracking.
 
-The frontend preview sends no search query, returns no simulated results and contains no sample projects. A future search service and desktop client require separate implementation work.
+The documentation reader searches only its local public Markdown collection, sends no search query and contains no source-project results or sample projects. A future search service and desktop client require separate implementation work.
 
 ## Contents
 

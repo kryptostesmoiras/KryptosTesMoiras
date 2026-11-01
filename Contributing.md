@@ -66,7 +66,7 @@ The root `Cargo.toml` should list only workspace members that actually exist. Ad
 
 ## 5. Local Validation
 
-For the current React/TSX interface, use the viewing instructions in [the repository README](ReadMe.md#public-web-interface). Check page navigation, language and theme selection, and the empty interface preview. Run `npm ci` and `npm run build` in `github/pages/` to verify the frontend. There is no backend or Cargo workspace in this frontend delivery. The Cargo examples below apply only to a future authorized Rust implementation.
+For the current React/TSX interface, use the viewing instructions in [the repository README](ReadMe.md#public-web-interface). Check page navigation, language and theme selection, document search, internal links, headings and Discussions availability. Run `npm ci` and `npm run build` in `github/pages/` to verify the frontend. There is no backend or Cargo workspace in this frontend delivery. The Cargo examples below apply only to a future authorized Rust implementation.
 
 
 Run the checks that apply to the workspace members you changed. From the repository root, the intended baseline checks are:

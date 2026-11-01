@@ -4,7 +4,7 @@ Scope: project documents and the public React/TSX interface. This is a documenta
 
 ## Current scope
 
-The deliverable contains English documentation and the public React/TypeScript interface under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. Its interface preview contains no accounts, repository data or sample projects.
+The deliverable contains English documentation and the public React/TypeScript interface under `github/pages/`. The website has twenty selectable languages and four themes plus system mode. It reads the tracked public Markdown collection and links to the hosting repository’s GitHub Discussions; it contains no private accounts or project search index.
 
 The assistant-created Rust server, SQLite data, private account UI, `apps/`, backend manifests, build outputs and backend-specific tools have been removed. They were outside the requested website/documentation scope. Their earlier test results must not be represented as capabilities of this website or of the owner's local application.
 
@@ -19,7 +19,7 @@ The owner's existing `app/` has not been imported, renamed, merged or modified. 
 5. **Signed approvals:** define action binding, expiry, replay protection, revocation and lost-device recovery. The website does not implement these controls.
 6. **Economics and license:** clarify ordinary free access, paid ancillary domain services, external provider costs, contribution rights and commercial agreements. The proprietary license was not changed during cleanup.
 7. **Royalties and treasury:** define rates through agreements, reproducible calculations, settlement confirmation, reconciliation and separation of operating funds from third-party liabilities. No payment or wallet service is active here.
-8. **Deployment:** the public `.io` site is a search entry point for owner-published projects, with guest limits. The planned desktop client manages onion connections and anonymous accounts. Domain, HTTPS, search feeds, client distribution, anonymity and transport protocols remain to be implemented and verified.
+8. **Deployment:** the GitHub Pages `.io` site is documentation/discussions only; the platform’s future public search service is separate. The planned desktop client manages onion connections and anonymous accounts. Domain, HTTPS, search feeds, client distribution, anonymity and transport protocols remain to be implemented and verified.
 
 ## Corrections retained
 
@@ -35,3 +35,7 @@ See the [coverage matrix](architecture/site-specifications.md) for the mapping b
 ## Frontend migration
 
 The requested web migration uses React, TypeScript and Vite under `github/pages/`, with a horizontal banner, typographic wordmark and Git-style navigation. The former authored HTML pages and their scripts/styles were removed. No backend or desktop implementation was added. The desktop framework remains a separate decision.
+
+## Documentation-only hosting
+
+The owner reassigned `kryptostesmoiras.github.io` to Markdown navigation and public discussions. The source-search portal publisher was stopped. The revised frontend reads all tracked Markdown locally and exposes native GitHub Discussions when enabled. The publication workflow checks source documents and discussion metadata every five minutes.
